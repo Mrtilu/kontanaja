@@ -13,7 +13,7 @@ define('SMTPCRYPTO', 'ssl');
 define('SMTPPORT', 465);
 
 //*INFO ADMIN
-define('NAMA_OWNER_WEB', 'OprTech'); //Nama pemilik web
+define('NAMA_OWNER_WEB', 'Namamu'); //Nama pemilik web
 define('EMAIL_ADMIN', 'email@domainmu.com'); //email admin
 define('ADMINPHONE', '+628120000000'); //Diawali +62
 define('ADMINPHONEPAY', '08120000000'); //Diawali 08
@@ -35,13 +35,13 @@ define('DESKRIPSI_2', 'Masukkan deskripsi lainnya disini');
 define('SITE_KEYWORDS', 'keyword 1, keyword 2, keyword 3, keyword 4'); 
 
 //*INFO PERUSAHAAN/PT/CV TAMPIL DI FOOTER DAN DESKRIPSI SEO
-define('NAMA_PERUSAHAAN', 'Oval Kapital'); //Nama Perusahaan
-define('NAMA_PERUSAHAAN_ALT', 'Oval Kapital'); //Nama Panjang Perusahaan
-define('URLWEB_PERUSAHAAN', 'https://ovalkapital.co.id/'); //URL Web Perusahaan
+define('NAMA_PERUSAHAAN', '401XD Group'); //Nama Perusahaan
+define('NAMA_PERUSAHAAN_ALT', '401XD Group Indonesia'); //Nama Panjang Perusahaan
+define('URLWEB_PERUSAHAAN', 'https://401xd.com/'); //URL Web Perusahaan
 define('COMPANY_PHONE', '+6282377823390'); //Nomor Telp. Perusahaan, Diawali +62
-define('COMPANY_ADDRESS', 'Gedung Neo Soho Capital Lt. 37 Jl. Letjen S Parman Kav. 28'); //Alamat Jalan
-define('COMPANY_CITY', 'Jakarta'); //Nama Kota
-define('COMPANY_PROVINCE', 'DKI Jakarta'); //Nama Provinsi
+define('COMPANY_ADDRESS', 'Jl. Sumbawa, Ulak Karang Utara, Kec. Padang Utara'); //Alamat Jalan
+define('COMPANY_CITY', 'Padang'); //Nama Kota
+define('COMPANY_PROVINCE', 'Sumatera Barat'); //Nama Provinsi
 define('COMPANY_CODE', '25133'); //Kode Pos
 define('COMPANY_COUNTRY', 'Indonesia'); //Negara
 define('DESC_PERUSAHAAN', 'Masukkan deskripsi perusahaan disini, ganti dengan deskripsi situs jika belum ada perusahaan'); //Deskripsi Perusahaan

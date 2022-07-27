@@ -35,9 +35,9 @@ define('DESKRIPSI_2', 'Masukkan deskripsi lainnya disini');
 define('SITE_KEYWORDS', 'keyword 1, keyword 2, keyword 3, keyword 4'); 
 
 //*INFO PERUSAHAAN/PT/CV TAMPIL DI FOOTER DAN DESKRIPSI SEO
-define('NAMA_PERUSAHAAN', '401XD Group'); //Nama Perusahaan
-define('NAMA_PERUSAHAAN_ALT', '401XD Group Indonesia'); //Nama Panjang Perusahaan
-define('URLWEB_PERUSAHAAN', 'https://401xd.com/'); //URL Web Perusahaan
+define('NAMA_PERUSAHAAN', 'Oval Kapital'); //Nama Perusahaan
+define('NAMA_PERUSAHAAN_ALT', 'Oval Kapital'); //Nama Panjang Perusahaan
+define('URLWEB_PERUSAHAAN', 'https://ovalkapital.co.id/'); //URL Web Perusahaan
 define('COMPANY_PHONE', '+6282377823390'); //Nomor Telp. Perusahaan, Diawali +62
 define('COMPANY_ADDRESS', 'Jl. Sumbawa, Ulak Karang Utara, Kec. Padang Utara'); //Alamat Jalan
 define('COMPANY_CITY', 'Padang'); //Nama Kota

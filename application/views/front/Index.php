@@ -211,12 +211,12 @@
       </div>
     </div>
     <div class="col-12 col-sm-12 col-md-4 col-lg-4">
-      <div class="mb-4">
+      <div class="mb-4  d-none">
         <div class="row">
           <div class="icon text-dark col-2 text-right">
             <i class="bi bi-cart-fill" style="font-size:30px;"></i>
           </div>
-          <div class="col-10 d-none">
+          <div class="col-10">
             <h3 class="title text-left" style="font-size:22px;">
               Mendukung transaksi H2H
             </h3>

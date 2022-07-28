@@ -14,7 +14,7 @@ define('SMTPPORT', 465);
 
 //*INFO ADMIN
 define('NAMA_OWNER_WEB', 'Namamu'); //Nama pemilik web
-define('EMAIL_ADMIN', 'email@domainmu.com'); //email admin
+define('EMAIL_ADMIN', 'ovalkapital.inter@gmail.com'); //email admin
 define('ADMINPHONE', '+628120000000'); //Diawali +62
 define('ADMINPHONEPAY', '08120000000'); //Diawali 08
 
@@ -27,16 +27,16 @@ define('SITE_NAME', 'Kontanaja'); //Nama Situs
 define('TAGLINE_NAME', 'Games, Voucher dan PPOB Termurah'); //Tagline Situs
 
 //*Deskripsi 1
-define('DESKRIPSI_1', 'Masukkan deskripsi situs disini');
+define('DESKRIPSI_1', 'Kontanaja');
 
 //*Deskripsi 2
-define('DESKRIPSI_2', 'Masukkan deskripsi lainnya disini'); 
+define('DESKRIPSI_2', 'Kontanaja'); 
 //Keyword Situs, Pisahkan dengan koma (,)
 define('SITE_KEYWORDS', 'keyword 1, keyword 2, keyword 3, keyword 4'); 
 
 //*INFO PERUSAHAAN/PT/CV TAMPIL DI FOOTER DAN DESKRIPSI SEO
-define('NAMA_PERUSAHAAN', 'Oval Kapital'); //Nama Perusahaan
-define('NAMA_PERUSAHAAN_ALT', 'Oval Kapital'); //Nama Panjang Perusahaan
+define('NAMA_PERUSAHAAN', 'PT. Oval Kapital Internasional'); //Nama Perusahaan
+define('NAMA_PERUSAHAAN_ALT', 'PT. Oval Kapital Internasional'); //Nama Panjang Perusahaan
 define('URLWEB_PERUSAHAAN', 'https://ovalkapital.co.id/'); //URL Web Perusahaan
 define('COMPANY_PHONE', '+6282377823390'); //Nomor Telp. Perusahaan, Diawali +62
 define('COMPANY_ADDRESS', 'Jl. Sumbawa, Ulak Karang Utara, Kec. Padang Utara'); //Alamat Jalan

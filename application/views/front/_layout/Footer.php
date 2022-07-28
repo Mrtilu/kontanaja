@@ -10,25 +10,25 @@
           <hr>
           <ul>
             <li>
-              <i class="bi bi-whatsapp"></i> <a href="http://wa.me/<?php echo ADMINPHONE; ?>"> WhatsApp</a>
+              <i class="bi bi-whatsapp d-none"></i> <a href="http://wa.me/<?php echo ADMINPHONE; ?>"> WhatsApp</a>
             </li>
             <li>
               <i class="bi bi-envelope-open-fill"></i> <a href="mailto:<?php echo EMAIL_ADMIN; ?>">Email</a>
             </li>
             <li>
-              <i class="bi bi-youtube"></i> <a href="<?php echo YOUTUBELINK; ?>"> Youtube</a>
+              <i class="bi bi-youtube d-none"></i> <a href="<?php echo YOUTUBELINK; ?>"> Youtube</a>
             </li>
             <li>
-              <i class="bi bi-facebook"></i> <a href="<?php echo FACEBOOKLINK; ?>">Facebook</a>
+              <i class="bi bi-facebook d-none"></i> <a href="<?php echo FACEBOOKLINK; ?>">Facebook</a>
             </li>
             <li>
-              <i class="bi bi-instagram"></i> <a href="<?php echo INSTAGRAMLINK; ?>"> Instagram</a>
+              <i class="bi bi-instagram d-none"></i> <a href="<?php echo INSTAGRAMLINK; ?>"> Instagram</a>
             </li>
             <li>
-              <i class="bi bi-twitter"></i> <a href="<?php echo TWITTERLINK; ?>"> Twitter</a>
+              <i class="bi bi-twitter d-none"></i> <a href="<?php echo TWITTERLINK; ?>"> Twitter</a>
             </li>
             <li>
-              <i class="bi bi-linkedin"></i> <a href="<?php echo LINKEDINLINK; ?>"> Linkedin</a>
+              <i class="bi bi-linkedin d-none"></i> <a href="<?php echo LINKEDINLINK; ?>"> Linkedin</a>
             </li>
           </ul>
         </div>
@@ -40,7 +40,7 @@
             <li>
               <a href="<?php echo base_url(); ?>">Beranda</a>
             </li>
-            <li>
+            <li class="d-none">
               <a href="https://play.google.com/store/apps/details?id=id.mcproject.kincaimedia" target="_blank">Download</a>
             </li>
             <?php if (!$this->ion_auth->logged_in()): ?>

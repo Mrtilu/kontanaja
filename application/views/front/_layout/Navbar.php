@@ -4,7 +4,7 @@
   <div class="container">
     <a class="navbar-brand text-white" href="<?php echo base_url(); ?>">
       <!-- logo -->
-      <img style="margin-left: 10px;width: 150px;max-width: 100%;height:100%;" src="<?php echo base_url() ?>assets/upload/kincaimediawhite.png?<?php echo BLACKEXPOVERSION; ?>" alt="<?php echo SITE_NAME; ?>" title="<?php echo SITE_NAME; ?>">
+      <img style="margin-left: 10px;width: 150px;max-width: 100%;height:100%;" src="<?php echo base_url() ?>assets/upload/logo-oval.png?<?php echo BLACKEXPOVERSION; ?>" alt="<?php echo SITE_NAME; ?>" title="<?php echo SITE_NAME; ?>">
     </a>
     <div class="burger tombol" style="margin-right:10px;">
       <span class="text-white"></span>
@@ -16,7 +16,7 @@
 	<nav class="menu">
     <div class="row pb-3">
       <div class="col-md-8 col-8">
-        <img style="width:150px;" src="<?php echo base_url('assets/upload/kincaimediawhite.png'); ?>?<?php echo BLACKEXPOVERSION; ?>" alt="<?php echo SITE_NAME; ?>" title="<?php echo SITE_NAME; ?>">
+        <img style="width:150px;" src="<?php echo base_url('assets/upload/logo-oval.png'); ?>?<?php echo BLACKEXPOVERSION; ?>" alt="<?php echo SITE_NAME; ?>" title="<?php echo SITE_NAME; ?>">
       </div>
       <div class="col-md-4 col-4 text-right close-mv text-white">
         <i class="bi bi-x-lg"></i>
@@ -45,7 +45,7 @@
       <li>
         <a href="<?php echo base_url(); ?>" class="text-white">Beranda</a>
       </li>
-      <li>
+      <li class="d-none">
         <a href="https://play.google.com/store/apps/details?id=id.mcproject.kincaimedia" target="_blank" class="text-white">Download</a>
       </li>
       <?php if (!$this->ion_auth->logged_in()): ?>

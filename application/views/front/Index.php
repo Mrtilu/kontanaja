@@ -116,7 +116,7 @@
     <div class="title text-dark text-center">
       <h1><?php echo SITE_NAME ?> - <?php echo TAGLINE_NAME ?></h1>
     </div>
-    <div class="text-dark text-center mb-3">
+    <div class="text-dark text-center mb-3 d-none">
       <hr>
       <?php echo DESKRIPSI_1; ?>
       <hr>
@@ -216,7 +216,7 @@
           <div class="icon text-dark col-2 text-right">
             <i class="bi bi-cart-fill" style="font-size:30px;"></i>
           </div>
-          <div class="col-10">
+          <div class="col-10 d-none">
             <h3 class="title text-left" style="font-size:22px;">
               Mendukung transaksi H2H
             </h3>

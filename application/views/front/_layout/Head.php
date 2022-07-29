@@ -17,8 +17,8 @@
 <meta name="facebook-domain-verification" content="<?php echo facebook_verification; ?>">
 
 <!-- Favicons -->
-<link href="<?php echo base_url() ?>assets/upload/kincaimedia/kincaimedia96.png?<?php echo BLACKEXPOVERSION; ?>" rel="icon">
-<link href="<?php echo base_url() ?>assets/upload/kincaimedia/kincaimedia180.png?<?php echo BLACKEXPOVERSION; ?>" rel="apple-touch-icon">
+<link href="<?php echo base_url() ?>assets/upload/logo-oval.png?<?php echo BLACKEXPOVERSION; ?>" rel="icon">
+<link href="<?php echo base_url() ?>assets/upload/logo-oval.png?<?php echo BLACKEXPOVERSION; ?>" rel="apple-touch-icon">
 
 <!-- Canonical -->
 <meta name="robots" content="all,index,follow">

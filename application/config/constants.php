@@ -73,7 +73,7 @@ define('GOOGLEKEY', 'XXXXXXXXXXXXXXXXX');
 define('GOOGLESITE_KEY', 'XXXXXXXXXXXXXXXXX');
 
 //*PAYMENT GATEWAY & PRODUK DIGIFLAZZ
-$production = true; //true OR false
+$production = false; //true OR false
 
 if ($production == true) { //true
 //*JIKA PRODUCTION
@@ -89,10 +89,10 @@ if ($production == true) { //true
 } else { //false
 //JIKA SANDBOX
     //tripay
-    define('URL_TRANSAKSI', "");
-    define('API_KEY', '');
-    define('PRIVATE_KEY', '');
-    define('MERCHANT_CODE', '');
+    define('URL_TRANSAKSI', "https://tripay.co.id/api/transaction/create");
+    define('API_KEY', 'PcMAIZa7x7alnOJ8Rv7nvMQuuIzT0N8IrhtlyfUS');
+    define('PRIVATE_KEY', '2Sval-nUQJ5-TA4nu-n3UGO-SzMl7');
+    define('MERCHANT_CODE', 'T14058');
     //digiflaz
     define('USERNAME_DIGI', '');
     define('KEY_GIDI', '');

@@ -6,17 +6,17 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 //*EMAIL SETTING
 define('MAILTYPE', 'html');
-define('SMTPHOST', 'mail.domain.com'); //host email
-define('SMTPUSER', 'email@domain.com'); //email
-define('SMTPPASS', 'pass_email'); //password email
-define('SMTPCRYPTO', 'ssl');
-define('SMTPPORT', 465);
+define('SMTPHOST', 'email-smtp.ap-southeast-1.amazonaws.com'); //host email
+define('SMTPUSER', 'oki@forexchanger.com'); //email
+define('SMTPPASS', 'BGIN838igcj3wa+egSKHKxJWoWR4xlPw49SVxLcDq/PA'); //password email
+define('SMTPCRYPTO', 'tls');
+define('SMTPPORT', 587);
 
 //*INFO ADMIN
-define('NAMA_OWNER_WEB', 'Namamu'); //Nama pemilik web
+define('NAMA_OWNER_WEB', 'Rachmat Widodo'); //Nama pemilik web
 define('EMAIL_ADMIN', 'ovalkapital.inter@gmail.com'); //email admin
-define('ADMINPHONE', '+628120000000'); //Diawali +62
-define('ADMINPHONEPAY', '08120000000'); //Diawali 08
+define('ADMINPHONE', '+628122922952'); //Diawali +62
+define('ADMINPHONEPAY', '08122922952'); //Diawali 08
 
 //*CUSTOM Variables
 define('AVAIL', true);
@@ -32,20 +32,20 @@ define('DESKRIPSI_1', 'Kontanaja');
 //*Deskripsi 2
 define('DESKRIPSI_2', 'Kontanaja'); 
 //Keyword Situs, Pisahkan dengan koma (,)
-define('SITE_KEYWORDS', 'keyword 1, keyword 2, keyword 3, keyword 4'); 
+define('SITE_KEYWORDS', 'Kontanaja, PPOB Murah, Topup Game, PPOB Terpercaya'); 
 
 //*INFO PERUSAHAAN/PT/CV TAMPIL DI FOOTER DAN DESKRIPSI SEO
 define('NAMA_PERUSAHAAN', 'PT. Oval Kapital Internasional'); //Nama Perusahaan
 define('NAMA_PERUSAHAAN_ALT', 'PT. Oval Kapital Internasional'); //Nama Panjang Perusahaan
 define('URLWEB_PERUSAHAAN', 'https://ovalkapital.co.id/'); //URL Web Perusahaan
-define('COMPANY_PHONE', '+6282377823390'); //Nomor Telp. Perusahaan, Diawali +62
+define('COMPANY_PHONE', '+628122922952'); //Nomor Telp. Perusahaan, Diawali +62
 define('COMPANY_ADDRESS', 'Jl. Sumbawa, Ulak Karang Utara, Kec. Padang Utara'); //Alamat Jalan
 define('COMPANY_CITY', 'Padang'); //Nama Kota
 define('COMPANY_PROVINCE', 'Sumatera Barat'); //Nama Provinsi
 define('COMPANY_CODE', '25133'); //Kode Pos
 define('COMPANY_COUNTRY', 'Indonesia'); //Negara
-define('DESC_PERUSAHAAN', 'Masukkan deskripsi perusahaan disini, ganti dengan deskripsi situs jika belum ada perusahaan'); //Deskripsi Perusahaan
-define('DESC_PERUSAHAAN_ALT', 'Masukkan deskripsi lain dari perusahaan, ganti dengan deskripsi situs jika belum ada perusahaan'); //Deskripsi Perusahaan
+define('DESC_PERUSAHAAN', 'Kontanaja'); //Deskripsi Perusahaan
+define('DESC_PERUSAHAAN_ALT', 'Kontanaja'); //Deskripsi Perusahaan
 
 //SOSIAL MEDIA
 define('YOUTUBELINK', 'https://youtube.com/c/UserName');
@@ -79,9 +79,9 @@ if ($production == true) { //true
 //*JIKA PRODUCTION
     //tripay
     define('URL_TRANSAKSI', "https://tripay.co.id/api/transaction/create");
-    define('API_KEY', 'ganti');
-    define('PRIVATE_KEY', 'ganti');
-    define('MERCHANT_CODE', 'ganti');
+    define('API_KEY', 'PcMAIZa7x7alnOJ8Rv7nvMQuuIzT0N8IrhtlyfUS');
+    define('PRIVATE_KEY', '2Sval-nUQJ5-TA4nu-n3UGO-SzMl7');
+    define('MERCHANT_CODE', 'T14058');
     //digiflaz
     define('USERNAME_DIGI', 'ganti');
     define('KEY_GIDI', 'ganti');
@@ -90,9 +90,9 @@ if ($production == true) { //true
 //JIKA SANDBOX
     //tripay
     define('URL_TRANSAKSI', "https://tripay.co.id/api/transaction/create");
-    define('API_KEY', 'PcMAIZa7x7alnOJ8Rv7nvMQuuIzT0N8IrhtlyfUS');
-    define('PRIVATE_KEY', '2Sval-nUQJ5-TA4nu-n3UGO-SzMl7');
-    define('MERCHANT_CODE', 'T14058');
+    define('API_KEY', 'DEV-6luhRGlEsBsCA6BY5UWuP3alaZhXJHlIWt9DLlZG');
+    define('PRIVATE_KEY', 'pCY8J-T9pB2-zOGTM-vxsEG-FALQM');
+    define('MERCHANT_CODE', 'T14060');
     //digiflaz
     define('USERNAME_DIGI', '');
     define('KEY_GIDI', '');

@@ -55,14 +55,14 @@
 <meta property="og:title" content="<?php echo $title ?>">
 <meta property="og:type" content="Website">
 <meta property="og:description" content="<?php echo $title ?>. <?php echo DESKRIPSI_1; ?>: <?php echo SITE_KEYWORDS; ?>.">
-<meta property="og:image" content="<?php echo base_url(); ?>assets/upload/Kincaimedia.png?<?php echo BLACKEXPOVERSION; ?>">
+<meta property="og:image" content="<?php echo base_url(); ?>assets/upload/logo-oval.png?<?php echo BLACKEXPOVERSION; ?>">
 <meta name="twitter:title" content="<?php echo $title ?>">
 <meta name="twitter:description" content="<?php echo $title ?>. <?php echo DESKRIPSI_1; ?>: <?php echo SITE_KEYWORDS; ?>.">
-<meta name="twitter:image" content="<?php echo base_url(); ?>assets/upload/Kincaimedia.png?<?php echo BLACKEXPOVERSION; ?>">
+<meta name="twitter:image" content="<?php echo base_url(); ?>assets/upload/logo-oval.png?<?php echo BLACKEXPOVERSION; ?>">
 <meta itemprop="title" content="<?php echo $title ?>">
 <meta itemprop="name" content="<?php echo $title ?>">
 <meta itemprop="description" content="<?php echo $title ?>. <?php echo DESKRIPSI_1; ?>: <?php echo SITE_KEYWORDS; ?>.">
-<meta itemprop="image" content="<?php echo base_url(); ?>assets/upload/Kincaimedia.png?<?php echo BLACKEXPOVERSION; ?>">
+<meta itemprop="image" content="<?php echo base_url(); ?>assets/upload/logo-oval.png?<?php echo BLACKEXPOVERSION; ?>">
 <?php endif; ?>
 <?php if ($this->uri->segment(1) == 'pulsa'): ?>
 <!--Title-->
@@ -150,18 +150,18 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-touch-fullscreen" content="yes">
-<meta name="msapplication-TileImage" content="<?php echo base_url(); ?>assets/upload/kincaimedia/kincaimedia144.png?<?php echo BLACKEXPOVERSION; ?>">
-<link rel="apple-touch-icon" href="<?php echo base_url(); ?>assets/upload/kincaimedia/kincaimedia180.png?<?php echo BLACKEXPOVERSION; ?>">
-<link rel="icon" sizes="32x32" href="<?php echo base_url(); ?>assets/upload/kincaimedia/kincaimedia32.png?<?php echo BLACKEXPOVERSION; ?>">
-<link rel="icon" sizes="48x48" href="<?php echo base_url(); ?>assets/upload/kincaimedia/kincaimedia48.png?<?php echo BLACKEXPOVERSION; ?>">
-<link rel="icon" sizes="72x72" href="<?php echo base_url(); ?>assets/upload/kincaimedia/kincaimedia72.png?<?php echo BLACKEXPOVERSION; ?>">
-<link rel="icon" sizes="96x96" href="<?php echo base_url(); ?>assets/upload/kincaimedia/kincaimedia96.png?<?php echo BLACKEXPOVERSION; ?>">
-<link rel="icon" sizes="144x144" href="<?php echo base_url(); ?>assets/upload/kincaimedia/kincaimedia144.png?<?php echo BLACKEXPOVERSION; ?>">
-<link rel="icon" sizes="168x168" href="<?php echo base_url(); ?>assets/upload/kincaimedia/kincaimedia168.png?<?php echo BLACKEXPOVERSION; ?>">
-<link rel="icon" sizes="180x180" href="<?php echo base_url(); ?>assets/upload/kincaimedia/kincaimedia180.png?<?php echo BLACKEXPOVERSION; ?>">
-<link rel="icon" sizes="192x192" href="<?php echo base_url(); ?>assets/upload/kincaimedia/kincaimedia192.png?<?php echo BLACKEXPOVERSION; ?>">
-<link rel="icon" sizes="256x256" href="<?php echo base_url(); ?>assets/upload/kincaimedia/kincaimedia256.png?<?php echo BLACKEXPOVERSION; ?>">
-<link rel="icon" sizes="512x512" href="<?php echo base_url(); ?>assets/upload/kincaimedia/kincaimedia512.png?<?php echo BLACKEXPOVERSION; ?>">
+<meta name="msapplication-TileImage" content="<?php echo base_url(); ?>assets/upload/logo-oval.png?<?php echo BLACKEXPOVERSION; ?>">
+<link rel="apple-touch-icon" href="<?php echo base_url(); ?>assets/upload/logo-oval.png?<?php echo BLACKEXPOVERSION; ?>">
+<link rel="icon" sizes="32x32" href="<?php echo base_url(); ?>assets/upload/logo-oval.png?<?php echo BLACKEXPOVERSION; ?>">
+<link rel="icon" sizes="48x48" href="<?php echo base_url(); ?>assets/upload/logo-oval.png?<?php echo BLACKEXPOVERSION; ?>">
+<link rel="icon" sizes="72x72" href="<?php echo base_url(); ?>assets/upload/logo-oval.png?<?php echo BLACKEXPOVERSION; ?>">
+<link rel="icon" sizes="96x96" href="<?php echo base_url(); ?>assets/upload/logo-oval.png?<?php echo BLACKEXPOVERSION; ?>">
+<link rel="icon" sizes="144x144" href="<?php echo base_url(); ?>assets/upload/logo-oval.png?<?php echo BLACKEXPOVERSION; ?>">
+<link rel="icon" sizes="168x168" href="<?php echo base_url(); ?>assets/upload/logo-oval.png?<?php echo BLACKEXPOVERSION; ?>">
+<link rel="icon" sizes="180x180" href="<?php echo base_url(); ?>assets/upload/logo-oval.png?<?php echo BLACKEXPOVERSION; ?>">
+<link rel="icon" sizes="192x192" href="<?php echo base_url(); ?>assets/upload/logo-oval.png?<?php echo BLACKEXPOVERSION; ?>">
+<link rel="icon" sizes="256x256" href="<?php echo base_url(); ?>assets/upload/logo-oval.png?<?php echo BLACKEXPOVERSION; ?>">
+<link rel="icon" sizes="512x512" href="<?php echo base_url(); ?>assets/upload/logo-oval.png?<?php echo BLACKEXPOVERSION; ?>">
 
 <!--Location-->
 <meta content="id-ID" name="language">
@@ -249,7 +249,7 @@
     		"@type": "ImageObject",
     		"@id": "#ImageWebSite",
     		"inLanguage": "id-ID",
-    		"url": "<?php echo base_url() ?>assets/upload/Kincaimedia.png?<?php echo BLACKEXPOVERSION; ?>",
+    		"url": "<?php echo base_url() ?>assets/upload/logo-oval.png?<?php echo BLACKEXPOVERSION; ?>",
     		"caption": "<?php echo SITE_NAME; ?>"
 		},
 		"inLanguage": "id-ID",
@@ -284,7 +284,7 @@
       		"@type": "ImageObject",
       		"@id": "#ImageWebSite",
       		"inLanguage": "id-ID",
-      		"url": "<?php echo base_url() ?>assets/upload/Kincaimedia.png?<?php echo BLACKEXPOVERSION; ?>",
+      		"url": "<?php echo base_url() ?>assets/upload/logo-oval.png?<?php echo BLACKEXPOVERSION; ?>",
       		"caption": "<?php echo SITE_NAME; ?>"
   		},
   		"address": {"@id": "#PostalAddressCorporation"},
@@ -384,7 +384,7 @@
       "@type": "ImageObject",
       "@id": "#Image",
       "inLanguage": "id-ID",
-      "url": "<?php echo base_url() ?>assets/upload/Kincaimedia.png?<?php echo BLACKEXPOVERSION; ?>",
+      "url": "<?php echo base_url() ?>assets/upload/logo-oval.png?<?php echo BLACKEXPOVERSION; ?>",
       "caption": "<?php echo $title ?>"
     },
     "inLanguage": "id-ID",

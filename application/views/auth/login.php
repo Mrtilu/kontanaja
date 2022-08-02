@@ -8,10 +8,11 @@ $this->load->view('_layout/HeaderNew');
       <div class="container mt-5">
         <div class="row">
           <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+           
+            <div class="card card-primary">
             <div class="login-brand">
               <a href="<?php echo base_url(); ?>"><img src="<?php echo base_url(); ?>assets/upload/logo-oval.png?<?php echo BLACKEXPOVERSION; ?>" alt="<?php echo SITE_NAME; ?>" title="<?php echo SITE_NAME; ?>" width="250" class="rounded-4"></a>
             </div>
-            <div class="card card-primary">
               <?php
               if($this->session->flashdata('message') || $message){
                 ?>

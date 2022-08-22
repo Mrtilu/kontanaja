@@ -69,8 +69,8 @@ define('google_analytics', 'ganti');
 
 //*GOOGLE reCAPTCHA v2
 //Daftar di https://www.google.com/recaptcha/admin
-define('GOOGLEKEY', 'XXXXXXXXXXXXXXXXX');
-define('GOOGLESITE_KEY', 'XXXXXXXXXXXXXXXXX');
+define('GOOGLEKEY', '6LdPqJshAAAAAP3MHifohzU7ljq1U5GhXqg32SsQ');
+define('GOOGLESITE_KEY', '6LdPqJshAAAAAJSAWuTP1KwEiFvb1dS6T-4HccWQ');
 
 //*PAYMENT GATEWAY & PRODUK DIGIFLAZZ
 $production = true; //true OR false

@@ -7,7 +7,7 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
+	'hostname' => 'localhost', // sg-dc-a1.oriontekno.com
 	'username' => 'prod_kontanaja_db',
 	'password' => 'etKY5Ds5mUk0g03E',
 	'database' => 'prod_kontanaja_db',

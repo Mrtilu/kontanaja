@@ -73,7 +73,7 @@ define('GOOGLEKEY', 'XXXXXXXXXXXXXXXXX');
 define('GOOGLESITE_KEY', 'XXXXXXXXXXXXXXXXX');
 
 //*PAYMENT GATEWAY & PRODUK DIGIFLAZZ
-$production = false; //true OR false
+$production = true; //true OR false
 
 if ($production == true) { //true
 //*JIKA PRODUCTION
@@ -83,9 +83,9 @@ if ($production == true) { //true
     define('PRIVATE_KEY', '2Sval-nUQJ5-TA4nu-n3UGO-SzMl7');
     define('MERCHANT_CODE', 'T14058');
     //digiflaz
-    define('USERNAME_DIGI', 'ganti');
-    define('KEY_GIDI', 'ganti');
-    define('PRIVATEDIGI', 'ganti');
+    define('USERNAME_DIGI', 'vuvoniWMvjvg');
+    define('KEY_GIDI', 'c108d5ab-d819-51bc-aa47-99455998a54e');
+    define('PRIVATEDIGI', 'secret123');
 } else { //false
 //JIKA SANDBOX
     //tripay
@@ -94,9 +94,9 @@ if ($production == true) { //true
     define('PRIVATE_KEY', 'pCY8J-T9pB2-zOGTM-vxsEG-FALQM');
     define('MERCHANT_CODE', 'T14060');
     //digiflaz
-    define('USERNAME_DIGI', '');
-    define('KEY_GIDI', '');
-    define('PRIVATEDIGI', '');
+    define('USERNAME_DIGI', 'vuvoniWMvjvg');
+    define('KEY_GIDI', 'dev-694808d0-2223-11ed-9a99-57e39f196baf');
+    define('PRIVATEDIGI', 'secret123');
 //Untuk mode sandbox, semua metode pembayaran tripay akan tetap aktif meskipun Anda nonaktifkan.
 }
 

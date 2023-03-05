@@ -73,7 +73,7 @@ define('GOOGLEKEY', '6LdPqJshAAAAAP3MHifohzU7ljq1U5GhXqg32SsQ');
 define('GOOGLESITE_KEY', '6LdPqJshAAAAAJSAWuTP1KwEiFvb1dS6T-4HccWQ');
 
 //*PAYMENT GATEWAY & PRODUK DIGIFLAZZ
-$production = true; //true OR false
+$production = false; //true OR false
 
 if ($production == true) { //true
 //*JIKA PRODUCTION

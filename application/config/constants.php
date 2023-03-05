@@ -79,7 +79,7 @@ if ($production == true) { //true
 //*JIKA PRODUCTION
     //tripay
     define('URL_TRANSAKSI', "https://tripay.co.id/api/transaction/create");
-    define('URL_TRIPAY', "https://tripay.co.id/api/");
+    define('URL_TRIPAY', "https://tripay.co.id/api");
     define('API_KEY', 'PcMAIZa7x7alnOJ8Rv7nvMQuuIzT0N8IrhtlyfUS');
     define('PRIVATE_KEY', '2Sval-nUQJ5-TA4nu-n3UGO-SzMl7');
     define('MERCHANT_CODE', 'T14058');
@@ -91,7 +91,7 @@ if ($production == true) { //true
 //JIKA SANDBOX
     //tripay
     define('URL_TRANSAKSI', "https://tripay.co.id/api-sandbox/transaction/create");
-    define('URL_TRIPAY', "https://tripay.co.id/api-sandbox/");
+    define('URL_TRIPAY', "https://tripay.co.id/api-sandbox");
     define('API_KEY', 'DEV-LmpZN3cJuzG7AHzO8bU2Bh2XfEinDEwMCL602jbX');
     define('PRIVATE_KEY', '4XPEP-Rg5kZ-itNWc-1WT6N-UHIWe');
     define('MERCHANT_CODE', 'T14060');

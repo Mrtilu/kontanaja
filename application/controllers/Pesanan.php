@@ -100,7 +100,7 @@ class Pesanan extends CI_Controller
         curl_setopt_array($curl, [
           //CURLOPT_IPRESOLVE    => CURL_IPRESOLVE_V4,
           CURLOPT_FRESH_CONNECT  => true,
-          CURLOPT_URL            => $UrlTriPay.'transaction/detail?'.http_build_query($payload),
+          CURLOPT_URL            => $UrlTriPay.'/transaction/detail?'.http_build_query($payload),
           CURLOPT_RETURNTRANSFER => true,
           CURLOPT_HEADER         => false,
           CURLOPT_HTTPHEADER     => ['Authorization: Bearer '.$apiKey],

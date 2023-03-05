@@ -367,7 +367,7 @@ class Prosess extends CI_Controller{
     $curl = curl_init();
     curl_setopt_array($curl, array(
       CURLOPT_FRESH_CONNECT     => true,
-      CURLOPT_URL               => $UrlTriPay."merchant/payment-channel?".http_build_query($payload),
+      CURLOPT_URL               => $UrlTriPay."/merchant/payment-channel?".http_build_query($payload),
       CURLOPT_RETURNTRANSFER    => true,
       CURLOPT_HEADER            => false,
       CURLOPT_HTTPHEADER        => array(
@@ -392,7 +392,7 @@ class Prosess extends CI_Controller{
     $curl = curl_init();
     curl_setopt_array($curl, array(
       CURLOPT_FRESH_CONNECT     => true,
-      CURLOPT_URL               => $UrlTriPay."merchant/fee-calculator?".http_build_query($payload),
+      CURLOPT_URL               => $UrlTriPay."/merchant/fee-calculator?".http_build_query($payload),
       CURLOPT_RETURNTRANSFER    => true,
       CURLOPT_HEADER            => false,
       CURLOPT_HTTPHEADER        => array(

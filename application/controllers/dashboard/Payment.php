@@ -30,6 +30,7 @@ class Payment extends CI_Controller
     {
       $WebsiteSetting = $this->db->get('data_setting')->row();
       $apiKey = API_KEY;
+      $UrlTriPay = URL_TRIPAY;
       $payload = [
         'sort' => 'DESC',
       ];
@@ -37,7 +38,7 @@ class Payment extends CI_Controller
 
       curl_setopt_array($curl, [
         CURLOPT_FRESH_CONNECT  => true,
-        CURLOPT_URL            => 'https://tripay.co.id/api/merchant/transactions?'.http_build_query($payload),
+        CURLOPT_URL            => $UrlTriPay.'merchant/transactions?'.http_build_query($payload),
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_HEADER         => false,
         CURLOPT_HTTPHEADER     => ['Authorization: Bearer '.$apiKey],

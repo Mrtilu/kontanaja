@@ -94,12 +94,13 @@ class Pesanan extends CI_Controller
     if ($dataDb) {
       if ($dataDb->StatusOrder == 0) {
         $apiKey = API_KEY;
+        $UrlTriPay = URL_TRIPAY;
         $payload = ['reference'	=> $dataDb->TrxId];
         $curl = curl_init();
         curl_setopt_array($curl, [
           //CURLOPT_IPRESOLVE    => CURL_IPRESOLVE_V4,
           CURLOPT_FRESH_CONNECT  => true,
-          CURLOPT_URL            => 'https://tripay.co.id/api/transaction/detail?'.http_build_query($payload),
+          CURLOPT_URL            => $UrlTriPay.'transaction/detail?'.http_build_query($payload),
           CURLOPT_RETURNTRANSFER => true,
           CURLOPT_HEADER         => false,
           CURLOPT_HTTPHEADER     => ['Authorization: Bearer '.$apiKey],

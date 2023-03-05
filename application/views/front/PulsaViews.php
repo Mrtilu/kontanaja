@@ -178,7 +178,7 @@
             success: function (data) {
               if (data === null) {
                 $.LoadingOverlay("hide");
-                alert('TERJADI KESALAHAN INTEGRASI PEMBAYARAN');
+                alert('TERJADI KESALAHAN INTEGRASI PEMBAYARAN DIGI');
               } else {
                 $.LoadingOverlay("hide");
                 $(".listpulsa").empty();
@@ -542,7 +542,7 @@
             csrfName = data.csrfName;
             csrfHash = data.csrfHash;
             if (data === null) {
-              alert('TERJADI KESALAHAN INTEGRASI PEMBAYARAN');
+              alert('TERJADI KESALAHAN INTEGRASI PEMBAYARAN PROSESS');
               $.LoadingOverlay("hide");
             } else {
               console.log(data.csrfHash);

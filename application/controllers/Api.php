@@ -55,13 +55,16 @@ class Api extends CI_Controller
   }
 
   public function get_payment() {
+    $this->load->library('../controllers/Order');
+    $payment = $this->Order->getPayment();
+
     $this->output
       ->set_content_type('application/json')
       ->set_status_header(200)
       ->set_output(json_encode([
           'status' => true,
           'message' => 'success get data',
-          'data' => []
+          'data' => $payment
       ]));
   }
 

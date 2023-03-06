@@ -55,7 +55,7 @@ class Api extends CI_Controller
   }
 
   public function get_payment() {
-    echo json_encode(["a"=>"oke"]);
+    return json_encode(["a"=>"oke"]);
   }
 
 }

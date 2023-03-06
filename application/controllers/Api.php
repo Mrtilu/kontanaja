@@ -54,19 +54,50 @@ class Api extends CI_Controller
     ->set_output(json_encode($dataRespone));
   }
 
-  public function get_payment() {
-    $data = $this->load->library('../controllers/order');
-    var_dump($data);
-    // $payment = $this->order->getPayment();
+  public function get_payment(){
+    $chanelPembayaran = $this->chanelPembayaran();
+
+    $c = 0;
+    if ($chanelPembayaran) {
+      foreach ($chanelPembayaran->data as $r) {
+        $data['data'][$c]['code'] = $r->code;
+        $data['data'][$c]['image'] = $r->icon_url;
+        $data['data'][$c]['price'] = 0;
+        $c++;
+      }
+    }
 
     $this->output
-      ->set_content_type('application/json')
-      ->set_status_header(200)
-      ->set_output(json_encode([
-          'status' => true,
-          'message' => 'success get data',
-          'data' => $payment
-      ]));
+    ->set_content_type('application/json')
+    ->set_status_header(200)
+    ->set_output(json_encode([
+        'status' => true,
+        'message' => 'success get data',
+        'data' => $data
+    ]));
+  }
+
+  public function chanelPembayaran(){
+    $apiKey = API_KEY;
+    $UrlTriPay = URL_TRIPAY;
+    $payload = [];
+    $curl = curl_init();
+    curl_setopt_array($curl, array(
+      CURLOPT_FRESH_CONNECT     => true,
+      CURLOPT_URL               => $UrlTriPay."/merchant/payment-channel?".http_build_query($payload),
+      CURLOPT_RETURNTRANSFER    => true,
+      CURLOPT_HEADER            => false,
+      CURLOPT_HTTPHEADER        => array(
+
+        "Authorization: Bearer ".$apiKey
+      ),
+      CURLOPT_FAILONERROR       => false
+    ));
+    $response = curl_exec($curl);
+    $response = json_decode($response);
+    $err = curl_error($curl);
+    curl_close($curl);
+    return $response;
   }
 
 }

@@ -55,10 +55,7 @@ class Api extends CI_Controller
   }
 
   public function get_payment() {
-    // Load another controller
-    $this->load->controller('Order');
-    
-    // Call a method from the loaded controller
+    $this->load->library('../controllers/Order');
     $payment = $this->Order->getPayment();
 
     $this->output

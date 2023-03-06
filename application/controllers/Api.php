@@ -54,4 +54,8 @@ class Api extends CI_Controller
     ->set_output(json_encode($dataRespone));
   }
 
+  public function get_payment() {
+    echo json_encode(["a"=>"oke"]);
+  }
+
 }

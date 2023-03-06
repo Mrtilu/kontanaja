@@ -55,8 +55,9 @@ class Api extends CI_Controller
   }
 
   public function get_payment() {
-    $this->load->library('../controllers/Order');
-    $payment = $this->Order->getPayment();
+    $ci = &get_instance();
+    $ci->load->controller('Order');
+    $payment = $ci->Order->getPayment();
 
     $this->output
       ->set_content_type('application/json')

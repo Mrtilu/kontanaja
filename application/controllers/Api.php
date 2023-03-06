@@ -62,6 +62,8 @@ class Api extends CI_Controller
       foreach ($chanelPembayaran->data as $r) {
         $data[$c]['code'] = $r->code;
         $data[$c]['image'] = $r->icon_url;
+        $data[$c]['group'] = $r->group;
+        $data[$c]['name'] = $r->name;
         $data[$c]['price'] = 0;
         $c++;
       }

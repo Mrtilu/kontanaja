@@ -102,4 +102,54 @@ class Api extends CI_Controller
     return $response;
   }
 
+  public function paymnet_process(){
+      $amount = $this->input->post('amount');
+      $merchantRef = $this->input->post('reference_id');
+      $payment = $this->input->post('payment_code');
+      $email = $this->input->post('email');
+      $phone = $this->input->post('phone');
+
+      $data = [
+        "amount" => $amount,
+        "merchant_ref" => $merchantRef,
+        "paymnet" => $payment,
+        "email" => $email,
+        "phone" => $phone
+      ];
+
+      $this->output
+      ->set_content_type('application/json')
+      ->set_status_header(200)
+      ->set_output(json_encode([
+          'status' => true,
+          'message' => 'success',
+          'data' => $data
+      ]));
+
+      $privateKey = PRIVATE_KEY;
+      $apiKey = API_KEY;
+      $merchantCode = MERCHANT_CODE;
+    
+      $data = [
+        'method'            => $payment,
+        'merchant_ref'      => $merchantRef,
+        'amount'            => $amount,
+        'customer_name'     => $nickName,
+        'customer_email'    => $email,
+        'customer_phone'    => $phone,
+        'order_items'       => [
+          [
+            'sku'       => REF,
+            'name'      => $itemName,
+            'price'     => $amount,
+            'quantity'  => 1
+          ]
+        ],
+        'callback_url'      => base_url('callback'),
+        'return_url'        => base_url('redirect'),
+        'expired_time'      => (time()+(24*60*60)),
+        'signature'         => hash_hmac('sha256', $merchantCode.$merchantRef.$amount, $privateKey)
+      ];
+  }
+
 }

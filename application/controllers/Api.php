@@ -169,7 +169,7 @@ class Api extends CI_Controller
       ->set_output(json_encode([
           'status' => true,
           'message' => 'success',
-          'data' => $newResponse->data
+          'data' => $newResponse
       ]));
   }
 

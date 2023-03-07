@@ -117,18 +117,11 @@ class Api extends CI_Controller
         "phone" => $phone
       ];
 
-      $this->output
-      ->set_content_type('application/json')
-      ->set_status_header(200)
-      ->set_output(json_encode([
-          'status' => true,
-          'message' => 'success',
-          'data' => $data
-      ]));
-
       $privateKey = PRIVATE_KEY;
       $apiKey = API_KEY;
       $merchantCode = MERCHANT_CODE;
+
+      $produk = array("TELKOMSEL","XL","TRI","INDOSAT","SMARTFREN");
     
       $data = [
         'method'            => $payment,
@@ -139,8 +132,8 @@ class Api extends CI_Controller
         'customer_phone'    => $phone,
         'order_items'       => [
           [
-            'sku'       => REF,
-            'name'      => $itemName,
+            'sku'       => "PULSA",
+            'name'      => $produk[array_rand($produk)],
             'price'     => $amount,
             'quantity'  => 1
           ]
@@ -150,6 +143,34 @@ class Api extends CI_Controller
         'expired_time'      => (time()+(24*60*60)),
         'signature'         => hash_hmac('sha256', $merchantCode.$merchantRef.$amount, $privateKey)
       ];
+
+      $curl = curl_init();
+      curl_setopt_array($curl, array(
+        CURLOPT_FRESH_CONNECT     => true,
+        CURLOPT_URL               => URL_TRANSAKSI,
+        CURLOPT_RETURNTRANSFER    => true,
+        CURLOPT_HEADER            => false,
+        CURLOPT_HTTPHEADER        => array(
+          "Authorization: Bearer ".$apiKey
+        ),
+        CURLOPT_FAILONERROR       => false,
+        CURLOPT_POST              => true,
+        CURLOPT_POSTFIELDS        => http_build_query($data)
+      ));
+      $response = curl_exec($curl);
+      $err = curl_error($curl);
+      curl_close($curl);
+      $newResponse = json_decode($response);
+      $TrxId = $newResponse->data->reference;
+
+      $this->output
+      ->set_content_type('application/json')
+      ->set_status_header(200)
+      ->set_output(json_encode([
+          'status' => true,
+          'message' => 'success',
+          'data' => $newResponse->data
+      ]));
   }
 
 }

@@ -165,7 +165,7 @@ class Api extends CI_Controller
       $TrxId = $newResponse->data->reference;
 
       if($newResponse->success){
-        $this->output
+        return $this->output
         ->set_content_type('application/json')
         ->set_status_header(200)
         ->set_output(json_encode([
@@ -175,7 +175,7 @@ class Api extends CI_Controller
         ]));
       }
 
-      $this->output
+      return $this->output
         ->set_content_type('application/json')
         ->set_status_header(406)
         ->set_output(json_encode([

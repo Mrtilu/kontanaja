@@ -180,7 +180,7 @@ class Api extends CI_Controller
         ->set_status_header(406)
         ->set_output(json_encode([
             'status' => false,
-            'message' => $newResponse->data->message,
+            'message' => $newResponse->message,
             'data' => null
         ]));
       

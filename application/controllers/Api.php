@@ -102,7 +102,7 @@ class Api extends CI_Controller
     return $response;
   }
 
-  public function paymnet_process(){
+  public function payment_process(){
       $amount = $this->input->post('amount');
       $merchantRef = $this->input->post('reference_id');
       $payment = $this->input->post('payment_code');
@@ -163,6 +163,9 @@ class Api extends CI_Controller
       curl_close($curl);
       $newResponse = json_decode($response);
       $TrxId = $newResponse->data->reference;
+
+      //save response & data in here
+      
 
       if($newResponse->success){
         return $this->output

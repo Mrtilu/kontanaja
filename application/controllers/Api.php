@@ -164,14 +164,26 @@ class Api extends CI_Controller
       $newResponse = json_decode($response);
       $TrxId = $newResponse->data->reference;
 
+      if($newResponse->data->success){
+        $this->output
+        ->set_content_type('application/json')
+        ->set_status_header(200)
+        ->set_output(json_encode([
+            'status' => true,
+            'message' => 'success',
+            'data' => $newResponse->data
+        ]));
+      }
+
       $this->output
-      ->set_content_type('application/json')
-      ->set_status_header(200)
-      ->set_output(json_encode([
-          'status' => true,
-          'message' => 'success',
-          'data' => $newResponse
-      ]));
+        ->set_content_type('application/json')
+        ->set_status_header(406)
+        ->set_output(json_encode([
+            'status' => false,
+            'message' => $newResponse->data->message,
+            'data' => null
+        ]));
+      
   }
 
 }

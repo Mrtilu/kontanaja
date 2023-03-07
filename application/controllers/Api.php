@@ -108,6 +108,7 @@ class Api extends CI_Controller
       $payment = $this->input->post('payment_code');
       $email = $this->input->post('email');
       $phone = $this->input->post('phone');
+      $name = $this->input->post('name');
 
       $data = [
         "amount" => $amount,
@@ -127,7 +128,7 @@ class Api extends CI_Controller
         'method'            => $payment,
         'merchant_ref'      => $merchantRef,
         'amount'            => $amount,
-        'customer_name'     => $nickName,
+        'customer_name'     => $name,
         'customer_email'    => $email,
         'customer_phone'    => $phone,
         'order_items'       => [

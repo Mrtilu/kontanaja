@@ -96,6 +96,8 @@ class Callback extends CI_Controller {
                 $inputData['TanggalUpdate'] = date('Y-m-d H:i');
                 $this->db->where('InvoiceId', $merchantRef)->update('data_order', $inputData);
               }
+            }elseif ($dataPro->ProductApi == 99) { //FC
+              //update status on fc on here
             }
           } elseif ($data->status== 'EXPIRED') {
             $inputData['StatusOrder'] = 2;

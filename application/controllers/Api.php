@@ -110,6 +110,14 @@ class Api extends CI_Controller
       $phone = $this->input->post('phone');
       $name = $this->input->post('name');
 
+      //log 
+      $dataTrigger = [
+        'payload' => json_encode($this->input->post()),
+        'type' => "payment_from_fc",
+        'created_at' => now()
+      ];
+      $insertDataTrigger = $this->db->insert('log_triggered', $dataTrigger);      
+
       $data = [
         "amount" => $amount,
         "merchant_ref" => $merchantRef,
@@ -123,6 +131,7 @@ class Api extends CI_Controller
       $merchantCode = MERCHANT_CODE;
 
       $produk = array("TELKOMSEL","XL","TRI","INDOSAT","SMARTFREN");
+      $final_produk = $produk[array_rand($produk)];
     
       $data = [
         'method'            => $payment,
@@ -134,7 +143,7 @@ class Api extends CI_Controller
         'order_items'       => [
           [
             'sku'       => "PULSA",
-            'name'      => $produk[array_rand($produk)],
+            'name'      => $final_produk,
             'price'     => $amount,
             'quantity'  => 1
           ]
@@ -165,7 +174,23 @@ class Api extends CI_Controller
       $TrxId = $newResponse->data->reference;
 
       //save response & data in here
-      
+      $dataInput = [
+        'UserId' => ($this->ion_auth->logged_in()) ? $this->ion_auth->user()->row()->id : 0,
+        'Email' => $email,
+        'Payment' => $payment,
+        'ItemId' => "PULSA",
+        'ItemName' => $final_produk,
+        'NickName' => $phone,
+        'InvoiceId' => $merchantRef,
+        'StatusOrder' => 0,
+        'TanggalOrder' => date('Y-m-d'),
+        'TanggalUpdate' => date('Y-m-d H:i:s'),
+        'Game' => "FC",
+        'TrxId' => $TrxId,
+        'Amount' => $newResponse->data->amount,
+        'Note' => $phone
+      ];
+      $insert = $this->db->insert('data_order', $dataInput);      
 
       if($newResponse->success){
         return $this->output

@@ -7,10 +7,15 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'sg-dc-a1.oriontekno.com', // sg-dc-a1.oriontekno.com
-	'username' => 'prod_kontanaja_db',
-	'password' => 'etKY5Ds5mUk0g03E',
-	'database' => 'prod_kontanaja_db',
+	// 'hostname' => 'sg-dc-a1.oriontekno.com', // production
+	// 'username' => 'prod_kontanaja_db',
+	// 'password' => 'etKY5Ds5mUk0g03E',
+	// 'database' => 'prod_kontanaja_db',
+	'hostname' => 'id-dc-jaksel-a1.beoverflow.co', // development
+	'username' => 'dev_kontanaja_db',
+	'password' => 'zI36et1AmzGzjS1u',
+	'database' => 'dev_kontanaja_db',
+	
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

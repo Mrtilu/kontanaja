@@ -26,6 +26,15 @@ class Callback extends CI_Controller {
     $event = $_SERVER['HTTP_X_CALLBACK_EVENT'];
     $dataTest = 'PAID';
     $inputData['TanggalUpdate'] = date('Y-m-d H:i:s');
+
+    //log 
+    $dataTrigger = [
+      'payload' => $json,
+      'type' => "callback_from_payment_gateway",
+      'created_at' => date("Y-m-d H:i:s")
+    ];
+    $insertDataTrigger = $this->db->insert('log_triggered', $dataTrigger);    
+
     if ($event == 'payment_status') {
       $merchantRef = $data->merchant_ref;
       $cek = $this->db->where('InvoiceId', $merchantRef)->get('data_order')->row();

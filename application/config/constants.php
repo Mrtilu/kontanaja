@@ -87,6 +87,11 @@ if ($production == true) { //true
     define('USERNAME_DIGI', 'vuvoniWMvjvg');
     define('KEY_GIDI', 'c108d5ab-d819-51bc-aa47-99455998a54e');
     define('PRIVATEDIGI', 'secret123');
+
+    //AKSES FC
+    define('USERNAME_FOREXCHANGER', "faiz@gmail.com");
+    define('PASSWORD_FOREXCHANGER', "secret");
+    define('URL_FOREXCHANGER', "https://forexchanger.com");
 } else { //false
 //JIKA SANDBOX
     //tripay
@@ -100,6 +105,11 @@ if ($production == true) { //true
     define('KEY_GIDI', 'dev-694808d0-2223-11ed-9a99-57e39f196baf');
     define('PRIVATEDIGI', 'secret123');
 //Untuk mode sandbox, semua metode pembayaran tripay akan tetap aktif meskipun Anda nonaktifkan.
+
+    //AKSES FC
+    define('USERNAME_FOREXCHANGER', "faiz@gmail.com");
+    define('PASSWORD_FOREXCHANGER', "secret");
+    define('URL_FOREXCHANGER', "https://dev.forexchanger.com");
 }
 
 

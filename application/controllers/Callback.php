@@ -31,7 +31,8 @@ class Callback extends CI_Controller {
     $dataTrigger = [
       'payload' => $json,
       'type' => "callback_from_payment_gateway",
-      'created_at' => date("Y-m-d H:i:s")
+      'created_at' => date("Y-m-d H:i:s"),
+      'reference_id' => $data->merchant_ref
     ];
     $insertDataTrigger = $this->db->insert('log_triggered', $dataTrigger);    
 
@@ -106,7 +107,13 @@ class Callback extends CI_Controller {
                 $this->db->where('InvoiceId', $merchantRef)->update('data_order', $inputData);
               }
             }elseif ($dataPro->ProductApi == 99) { //FC
-              //update status on fc on here
+              $inputData['StatusOrder'] = 1;
+              $update = $this->db->where('InvoiceId', $merchantRef)->update('data_order', $inputData);
+
+              //process forexchanger
+
+              
+
             }
           } elseif ($data->status== 'EXPIRED') {
             $inputData['StatusOrder'] = 2;
@@ -152,6 +159,97 @@ class Callback extends CI_Controller {
     $response = json_decode(curl_exec($curl));
     $dataJson = $response->data;
     return $dataJson;
+  }
+
+  private function processForechanger($data){
+
+  }
+
+  public static function setSwaggerToken() {
+
+    $mt_user = USERNAME_FOREXCHANGER;
+    $mt_key = PASSWORD_FOREXCHANGER;
+
+    $http = new Client([
+        'base_uri' => URL_FOREXCHANGER,
+        'headers'  => [
+            'Content-Type' => 'application/x-www-form-urlencoded',
+        ]
+    ]);
+
+    $data = [ 'form_params' => [
+            'email' => $mt_user,
+            'password' => $mt_key
+        ]
+    ];
+    $respons = $http->post('/api/login', $data);
+    $token = json_decode($respons->getBody(), true);
+
+    $access_token = $token['token'];
+
+    $this->db->truncate('fc_token');
+    $fcToken = [
+      'token_type' => "Bearer",
+      'access_token' => $access_token,
+      'created_at' => date("Y-m-d H:i:s"),
+      'updated_at' => date("Y-m-d H:i:s"),
+      'expired_date' => date('Y-m-d H:i:s', strtotime('+1 days'))
+    ];
+    $insert = $this->db->insert('fc_token', $fcToken);  
+  }
+
+  public static function updateSwagger() {
+
+    $mt_user = USERNAME_FOREXCHANGER;
+    $mt_key = PASSWORD_FOREXCHANGER;
+
+    $http = new Client([
+        'base_uri' => URL_FOREXCHANGER,
+        'headers'  => [
+            'Content-Type' => 'application/x-www-form-urlencoded',
+        ]
+    ]);
+
+    $data = [ 'form_params' => [
+            'username' => $mt_user,
+            'password' => $mt_key
+        ]
+    ];
+    $respons = $http->post('/api/login', $data);
+    $token = json_decode($respons->getBody(), true);
+
+    $access_token = $token['token'];
+    $fcToken = [
+      'token_type' => "Bearer",
+      'access_token' => $access_token,
+      'created_at' => date("Y-m-d H:i:s"),
+      'updated_at' => date("Y-m-d H:i:s"),
+      'expired_date' => date('Y-m-d H:i:s', strtotime('+1 days'))
+    ];
+    $update = $this->db->where('id', 1)->update('fc_token', $fcToken);
+    $NewDate=Date('d:m:Y', strtotime('+1 days'));
+  }
+
+  public static function getSwaggerToken() {
+    $swagger = $this->db->where('id', 1)->get('fc_token')->row();
+    if($swagger == null) {
+        $this->setSwaggerToken();
+        $nswagger = $this->db->where('id', 1)->get('fc_token')->row();
+        return $nswagger;
+    } else {
+        $date_now = date("Y-m-d H:i:s");
+        $data_swagger = $this->db->where('id', 1)->get('fc_token')->row();
+
+        if($date_now < $data_swagger->expired_date) {
+            $this->updateSwagger();
+            $swagger_updated = $this->db->where('id', 1)->get('fc_token')->row();
+            return $swagger_updated;
+        }
+        $swagger_old = $this->db->where('id', 1)->get('fc_token')->row();
+        return $swagger_old;
+    }
+    $swagger = $this->db->where('id', 1)->get('fc_token')->row();
+    return $swagger;
   }
 
 }

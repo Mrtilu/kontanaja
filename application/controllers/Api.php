@@ -114,7 +114,8 @@ class Api extends CI_Controller
       $dataTrigger = [
         'payload' => json_encode($this->input->post()),
         'type' => "payment_from_fc",
-        'created_at' => date("Y-m-d H:i:s")
+        'created_at' => date("Y-m-d H:i:s"),
+        'reference_id' => $merchantRef
       ];
       $insertDataTrigger = $this->db->insert('log_triggered', $dataTrigger);      
 

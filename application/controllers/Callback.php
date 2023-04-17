@@ -122,7 +122,7 @@ class Callback extends CI_Controller {
             if ($dataPro->ProductApi == 99) { //FC
               //process forexchange
               $prosessFC =  $this->processForechanger($merchantRef, $data->status);
-            }
+            } 
 
           } elseif ($data->status == 'FAILED') {
             $inputData['StatusOrder'] = 3;
@@ -174,6 +174,7 @@ class Callback extends CI_Controller {
   private function processForechanger($merchantRef, $paymentStatus){
     $token = $this->getSwaggerToken();
     $valid_token = $token->token_type.' '.$token->access_token;
+
     $curl = curl_init();
     $sign = md5(USERNAME_DIGI.KEY_GIDI.$refid);
     curl_setopt_array($curl, array(
@@ -201,7 +202,7 @@ class Callback extends CI_Controller {
     return $dataJson;
   }
 
-  public static function setSwaggerToken() {
+  private static function setSwaggerToken() {
 
     $mt_user = USERNAME_FOREXCHANGER;
     $mt_key = PASSWORD_FOREXCHANGER;
@@ -234,7 +235,7 @@ class Callback extends CI_Controller {
     $insert = $this->db->insert('fc_token', $fcToken);  
   }
 
-  public static function updateSwagger() {
+  private static function updateSwagger() {
 
     $mt_user = USERNAME_FOREXCHANGER;
     $mt_key = PASSWORD_FOREXCHANGER;
@@ -266,7 +267,7 @@ class Callback extends CI_Controller {
     $NewDate=Date('d:m:Y', strtotime('+1 days'));
   }
 
-  public static function getSwaggerToken() {
+  private static function getSwaggerToken() {
     $swagger = $this->db->where('id', 1)->get('fc_token')->row();
     if($swagger == null) {
         $this->setSwaggerToken();

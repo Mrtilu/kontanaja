@@ -179,7 +179,7 @@ class Callback extends CI_Controller {
     $curl = curl_init();
     $sign = md5(USERNAME_DIGI.KEY_GIDI.$refid);
     curl_setopt_array($curl, array(
-      CURLOPT_URL => URL_FOREXCHANGER.'/',
+      CURLOPT_URL => URL_FOREXCHANGER.'/pg/call_back_payment',
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_ENCODING => '',
       CURLOPT_MAXREDIRS => 10,

@@ -112,6 +112,7 @@ class Callback extends CI_Controller {
 
               //process forexchanger
               $prosessFC =  $this->processForechanger($merchantRef, $data->status);
+              echo json_encode(['success' => true, 'status'=>"update FC"]);
 
             }
           } elseif ($data->status== 'EXPIRED') {

@@ -177,7 +177,33 @@ class Callback extends CI_Controller {
     log_message('DEBUG', 'jalan processForechanger');
     $valid_token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3RcL2V4Y2hhbmdlclwvcHVibGljXC9hcGlcL2xvZ2luIiwiaWF0IjoxNjgwODc4MjExLCJleHAiOjE2ODM0NzAyMTEsIm5iZiI6MTY4MDg3ODIxMSwianRpIjoiUE5YVmNCcmsweHBHNFFyZSIsInN1YiI6OSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.vg6QUbCDJEcZ8rrqHJ7sKtlGANwpMWOV17yMOm80Uas";
 
+    // $curl = curl_init();
+    // curl_setopt_array($curl, array(
+    //   CURLOPT_URL => 'https://dev.forexchanger.com/api/v2/call_back_payment',
+    //   CURLOPT_RETURNTRANSFER => true,
+    //   CURLOPT_ENCODING => '',
+    //   CURLOPT_MAXREDIRS => 10,
+    //   CURLOPT_TIMEOUT => 0,
+    //   CURLOPT_FOLLOWLOCATION => true,
+    //   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    //   CURLOPT_CUSTOMREQUEST => 'POST',
+    //   CURLOPT_POSTFIELDS =>'
+    //   {
+    //     "reference_id": "'.$merchantRef.'",
+    //     "payment_status" : "'.$payment_status.'"
+    //   }',
+    //   CURLOPT_HTTPHEADER => array(
+    //     'Content-Type: text/plain',
+    //     'Authorization : '.$valid_token.''
+    //   ),
+    // ));
+    // log_message('DEBUG', $curl);
+    // $response = json_decode(curl_exec($curl));
+    // $dataJson = $response->data;
+    // return $dataJson;
+
     $curl = curl_init();
+
     curl_setopt_array($curl, array(
       CURLOPT_URL => 'https://dev.forexchanger.com/api/v2/call_back_payment',
       CURLOPT_RETURNTRANSFER => true,
@@ -187,20 +213,21 @@ class Callback extends CI_Controller {
       CURLOPT_FOLLOWLOCATION => true,
       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
       CURLOPT_CUSTOMREQUEST => 'POST',
-      CURLOPT_POSTFIELDS =>'
-      {
-        "reference_id": "'.$merchantRef.'",
-        "payment_status" : "'.$payment_status.'"
-      }',
+      CURLOPT_POSTFIELDS =>'{
+        "reference_id" : "$merchantRef",
+        "payment_status" : "$payment_status"
+    }',
       CURLOPT_HTTPHEADER => array(
-        'Content-Type: text/plain',
-        'Authorization : '.$valid_token.''
+        'Authorization: $valid_token',
+        'Content-Type: application/json'
       ),
     ));
-    log_message('DEBUG', $curl);
-    $response = json_decode(curl_exec($curl));
-    $dataJson = $response->data;
-    return $dataJson;
+
+    $response = curl_exec($curl);
+
+    curl_close($curl);
+    echo $response;
+
   }
 
   private static function setSwaggerToken() {

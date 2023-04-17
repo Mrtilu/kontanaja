@@ -111,18 +111,28 @@ class Callback extends CI_Controller {
               $update = $this->db->where('InvoiceId', $merchantRef)->update('data_order', $inputData);
 
               //process forexchanger
-
-              
+              $prosessFC =  $this->processForechanger($merchantRef, $data->status);
 
             }
           } elseif ($data->status== 'EXPIRED') {
             $inputData['StatusOrder'] = 2;
             $this->db->where('InvoiceId', $merchantRef);
             $update = $this->db->update('data_order', $inputData);
+
+            if ($dataPro->ProductApi == 99) { //FC
+              //process forexchange
+              $prosessFC =  $this->processForechanger($merchantRef, $data->status);
+            }
+
           } elseif ($data->status == 'FAILED') {
             $inputData['StatusOrder'] = 3;
             $this->db->where('InvoiceId', $merchantRef);
             $update = $this->db->update('data_order', $inputData);
+
+            if ($dataPro->ProductApi == 99) { //FC
+              //process forexchange
+              $prosessFC =  $this->processForechanger($merchantRef, $data->status);
+            }
           }
           echo json_encode(['success' => true]);
         }
@@ -161,8 +171,34 @@ class Callback extends CI_Controller {
     return $dataJson;
   }
 
-  private function processForechanger($data){
+  private function processForechanger($merchantRef, $paymentStatus){
+    $token = $this->getSwaggerToken();
+    $valid_token = $token->token_type.' '.$token->access_token;
+    $curl = curl_init();
+    $sign = md5(USERNAME_DIGI.KEY_GIDI.$refid);
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => URL_FOREXCHANGER.'/',
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'POST',
+      CURLOPT_POSTFIELDS =>'
+      {
+        "reference_id": '.$merchantRef.',
+        "payment_status" : '.$payment_status.'
+      }',
+      CURLOPT_HTTPHEADER => array(
+        'Content-Type: text/plain',
+        'Authorization : '.$valid_token.''
+      ),
+    ));
 
+    $response = json_decode(curl_exec($curl));
+    $dataJson = $response->data;
+    return $dataJson;
   }
 
   public static function setSwaggerToken() {
@@ -240,7 +276,7 @@ class Callback extends CI_Controller {
         $date_now = date("Y-m-d H:i:s");
         $data_swagger = $this->db->where('id', 1)->get('fc_token')->row();
 
-        if($date_now < $data_swagger->expired_date) {
+        if($date_now > $data_swagger->expired_date) {
             $this->updateSwagger();
             $swagger_updated = $this->db->where('id', 1)->get('fc_token')->row();
             return $swagger_updated;

@@ -216,7 +216,7 @@ class Callback extends CI_Controller {
       CURLOPT_CUSTOMREQUEST => 'POST',
       CURLOPT_POSTFIELDS =>'{
         "reference_id" : "'.$merchantRef.'",
-        "payment_status" : "'.$payment_status.'"
+        "payment_status" : "'.$paymentStatus.'"
     }',
       CURLOPT_HTTPHEADER => array(
         'Authorization: "'.$valid_token.'"',

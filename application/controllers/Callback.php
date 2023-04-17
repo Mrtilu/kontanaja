@@ -179,7 +179,7 @@ class Callback extends CI_Controller {
 
     $curl = curl_init();
     curl_setopt_array($curl, array(
-      CURLOPT_URL => URL_FOREXCHANGER.'/api/v2/call_back_payment',
+      CURLOPT_URL => 'https://dev.forexchanger.com/api/v2/call_back_payment',
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_ENCODING => '',
       CURLOPT_MAXREDIRS => 10,

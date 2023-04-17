@@ -177,9 +177,8 @@ class Callback extends CI_Controller {
     $valid_token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3RcL2V4Y2hhbmdlclwvcHVibGljXC9hcGlcL2xvZ2luIiwiaWF0IjoxNjgwODc4MjExLCJleHAiOjE2ODM0NzAyMTEsIm5iZiI6MTY4MDg3ODIxMSwianRpIjoiUE5YVmNCcmsweHBHNFFyZSIsInN1YiI6OSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.vg6QUbCDJEcZ8rrqHJ7sKtlGANwpMWOV17yMOm80Uas";
 
     $curl = curl_init();
-    $sign = md5(USERNAME_DIGI.KEY_GIDI.$refid);
     curl_setopt_array($curl, array(
-      CURLOPT_URL => URL_FOREXCHANGER.'/pg/call_back_payment',
+      CURLOPT_URL => URL_FOREXCHANGER.'/api/v2/call_back_payment',
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_ENCODING => '',
       CURLOPT_MAXREDIRS => 10,

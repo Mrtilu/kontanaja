@@ -349,6 +349,7 @@ class Callback extends CI_Controller {
     $CI = get_instance();
     log_message('error', "getSwaggerToken");
     $swagger = $CI->db->where('id', 1)->get('fc_token')->row();
+    log_message('error', json_encode($swagger));
     if($swagger == null) {
         $CI->setSwaggerToken();
         $nswagger = $CI->db->where('id', 1)->get('fc_token')->row();

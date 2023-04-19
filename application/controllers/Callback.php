@@ -112,7 +112,6 @@ class Callback extends CI_Controller {
 
               //process forexchanger
               $prosessFC =  $this->processForechanger($merchantRef, $data->status);
-              echo json_encode(['success' => true, 'status'=>"update FC"]);
 
             }
           } elseif ($data->status== 'EXPIRED') {
@@ -173,10 +172,10 @@ class Callback extends CI_Controller {
   }
 
   private function processForechanger($merchantRef, $paymentStatus){
-    // $token = $this->getSwaggerToken();
-    // $valid_token = $token->token_type.' '.$token->access_token;
-    log_message('DEBUG', 'jalan processForechanger');
-    $valid_token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3RcL2V4Y2hhbmdlclwvcHVibGljXC9hcGlcL2xvZ2luIiwiaWF0IjoxNjgwODc4MjExLCJleHAiOjE2ODM0NzAyMTEsIm5iZiI6MTY4MDg3ODIxMSwianRpIjoiUE5YVmNCcmsweHBHNFFyZSIsInN1YiI6OSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.vg6QUbCDJEcZ8rrqHJ7sKtlGANwpMWOV17yMOm80Uas";
+    $token = $this->getSwaggerToken();
+    $valid_token = $token->token_type.' '.$token->access_token;
+    // log_message('DEBUG', 'jalan processForechanger');
+    // $valid_token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3RcL2V4Y2hhbmdlclwvcHVibGljXC9hcGlcL2xvZ2luIiwiaWF0IjoxNjgwODc4MjExLCJleHAiOjE2ODM0NzAyMTEsIm5iZiI6MTY4MDg3ODIxMSwianRpIjoiUE5YVmNCcmsweHBHNFFyZSIsInN1YiI6OSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.vg6QUbCDJEcZ8rrqHJ7sKtlGANwpMWOV17yMOm80Uas";
 
     // $curl = curl_init();
     // curl_setopt_array($curl, array(
@@ -206,7 +205,7 @@ class Callback extends CI_Controller {
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
-      CURLOPT_URL => 'https://dev.forexchanger.com/api/v2/call_back_payment',
+      CURLOPT_URL => URL_FOREXCHANGER.'/api/v2/call_back_payment',
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_ENCODING => '',
       CURLOPT_MAXREDIRS => 10,
@@ -227,7 +226,7 @@ class Callback extends CI_Controller {
     $response = curl_exec($curl);
 
     curl_close($curl);
-    echo $response;
+    return $response;
 
   }
 
@@ -236,32 +235,56 @@ class Callback extends CI_Controller {
     $mt_user = USERNAME_FOREXCHANGER;
     $mt_key = PASSWORD_FOREXCHANGER;
 
-    $http = new Client([
-        'base_uri' => URL_FOREXCHANGER,
-        'headers'  => [
-            'Content-Type' => 'application/x-www-form-urlencoded',
-        ]
-    ]);
+    // $http = new Client([
+    //     'base_uri' => URL_FOREXCHANGER,
+    //     'headers'  => [
+    //         'Content-Type' => 'application/x-www-form-urlencoded',
+    //     ]
+    // ]);
 
-    $data = [ 'form_params' => [
-            'email' => $mt_user,
-            'password' => $mt_key
-        ]
-    ];
-    $respons = $http->post('/api/login', $data);
-    $token = json_decode($respons->getBody(), true);
+    // $data = [ 'form_params' => [
+    //         'email' => $mt_user,
+    //         'password' => $mt_key
+    //     ]
+    // ];
+    // $respons = $http->post('/api/login', $data);
+    // $token = json_decode($respons->getBody(), true);
 
-    $access_token = $token['token'];
+    // $access_token = $token['token'];
+
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => URL_FOREXCHANGER.'/api/login',
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'POST',
+      CURLOPT_POSTFIELDS =>'{
+        "email" : "'.$mt_user.'",
+        "password" : "'.$mt_key.'"
+    }',
+      CURLOPT_HTTPHEADER => array(
+        'Content-Type: application/x-www-form-urlencoded'
+      ),
+    ));
+
+    $response = json_decode(curl_exec($curl));
+    $dataJson = $response->data;
 
     $this->db->truncate('fc_token');
     $fcToken = [
       'token_type' => "Bearer",
-      'access_token' => $access_token,
+      'access_token' => $dataJson->token,
       'created_at' => date("Y-m-d H:i:s"),
       'updated_at' => date("Y-m-d H:i:s"),
       'expired_date' => date('Y-m-d H:i:s', strtotime('+1 days'))
     ];
     $insert = $this->db->insert('fc_token', $fcToken);  
+    return true;
   }
 
   private static function updateSwagger() {
@@ -269,31 +292,55 @@ class Callback extends CI_Controller {
     $mt_user = USERNAME_FOREXCHANGER;
     $mt_key = PASSWORD_FOREXCHANGER;
 
-    $http = new Client([
-        'base_uri' => URL_FOREXCHANGER,
-        'headers'  => [
-            'Content-Type' => 'application/x-www-form-urlencoded',
-        ]
-    ]);
+    // $http = new Client([
+    //     'base_uri' => URL_FOREXCHANGER,
+    //     'headers'  => [
+    //         'Content-Type' => 'application/x-www-form-urlencoded',
+    //     ]
+    // ]);
 
-    $data = [ 'form_params' => [
-            'username' => $mt_user,
-            'password' => $mt_key
-        ]
-    ];
-    $respons = $http->post('/api/login', $data);
-    $token = json_decode($respons->getBody(), true);
+    // $data = [ 'form_params' => [
+    //         'username' => $mt_user,
+    //         'password' => $mt_key
+    //     ]
+    // ];
+    // $respons = $http->post('/api/login', $data);
+    // $token = json_decode($respons->getBody(), true);
 
-    $access_token = $token['token'];
+    // $access_token = $token['token'];
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => URL_FOREXCHANGER.'/api/login',
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'POST',
+      CURLOPT_POSTFIELDS =>'{
+        "email" : "'.$mt_user.'",
+        "password" : "'.$mt_key.'"
+    }',
+      CURLOPT_HTTPHEADER => array(
+        'Content-Type: application/x-www-form-urlencoded'
+      ),
+    ));
+
+    $response = json_decode(curl_exec($curl));
+    $dataJson = $response->data;
+
     $fcToken = [
       'token_type' => "Bearer",
-      'access_token' => $access_token,
+      'access_token' => $dataJson->token,
       'created_at' => date("Y-m-d H:i:s"),
       'updated_at' => date("Y-m-d H:i:s"),
       'expired_date' => date('Y-m-d H:i:s', strtotime('+1 days'))
     ];
     $update = $this->db->where('id', 1)->update('fc_token', $fcToken);
     $NewDate=Date('d:m:Y', strtotime('+1 days'));
+    return true;
   }
 
   private static function getSwaggerToken() {

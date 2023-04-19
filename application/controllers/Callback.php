@@ -235,25 +235,7 @@ class Callback extends CI_Controller {
     $mt_user = USERNAME_FOREXCHANGER;
     $mt_key = PASSWORD_FOREXCHANGER;
 
-    // $http = new Client([
-    //     'base_uri' => URL_FOREXCHANGER,
-    //     'headers'  => [
-    //         'Content-Type' => 'application/x-www-form-urlencoded',
-    //     ]
-    // ]);
-
-    // $data = [ 'form_params' => [
-    //         'email' => $mt_user,
-    //         'password' => $mt_key
-    //     ]
-    // ];
-    // $respons = $http->post('/api/login', $data);
-    // $token = json_decode($respons->getBody(), true);
-
-    // $access_token = $token['token'];
-
     $curl = curl_init();
-
     curl_setopt_array($curl, array(
       CURLOPT_URL => URL_FOREXCHANGER.'/api/login',
       CURLOPT_RETURNTRANSFER => true,
@@ -273,6 +255,7 @@ class Callback extends CI_Controller {
     ));
 
     $response = json_decode(curl_exec($curl));
+    log_message('error', json_encode($response));
     $dataJson = $response->data;
 
     $CI->db->truncate('fc_token');

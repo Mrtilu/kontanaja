@@ -344,12 +344,13 @@ class Callback extends CI_Controller {
   }
 
   private static function getSwaggerToken() {
+    log_message('DEBUG', "getSwaggerToken");
     $swagger = $this->db->where('id', 1)->get('fc_token')->row();
     log_message('DEBUG', $swagger);
     if($swagger == null) {
         $this->setSwaggerToken();
         $nswagger = $this->db->where('id', 1)->get('fc_token')->row();
-        return $nswagger;
+        return $nswagger[0];
     } else {
         $date_now = date("Y-m-d H:i:s");
         $data_swagger = $this->db->where('id', 1)->get('fc_token')->row();
@@ -360,10 +361,10 @@ class Callback extends CI_Controller {
             return $swagger_updated;
         }
         $swagger_old = $this->db->where('id', 1)->get('fc_token')->row();
-        return $swagger_old;
+        return $swagger_old[0];
     }
     $swagger = $this->db->where('id', 1)->get('fc_token')->row();
-    return $swagger;
+    return $swagger[0];
   }
 
 }

@@ -330,8 +330,8 @@ class Callback extends CI_Controller {
     ));
 
     $response = json_decode(curl_exec($curl));
-    $dataJson = $response->data;
     log_message('error', json_encode($response));
+    $dataJson = $response->data;
 
     $fcToken = [
       'token_type' => "Bearer",

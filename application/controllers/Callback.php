@@ -349,15 +349,15 @@ class Callback extends CI_Controller {
     $swagger = $CI->db->where('id', 1)->get('fc_token')->row();
     log_message('DEBUG', $swagger);
     if($swagger == null) {
-        $this->setSwaggerToken();
+        $CI->setSwaggerToken();
         $nswagger = $CI->db->where('id', 1)->get('fc_token')->row();
         return $nswagger[0];
     } else {
         $date_now = date("Y-m-d H:i:s");
-        $data_swagger = $this->db->where('id', 1)->get('fc_token')->row();
+        $data_swagger = $CI->db->where('id', 1)->get('fc_token')->row();
 
         if($date_now > $data_swagger->expired_date) {
-            $this->updateSwagger();
+            $CI->updateSwagger();
             $swagger_updated = $CI->db->where('id', 1)->get('fc_token')->row();
             return $swagger_updated;
         }

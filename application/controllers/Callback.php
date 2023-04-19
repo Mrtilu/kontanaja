@@ -345,6 +345,7 @@ class Callback extends CI_Controller {
 
   private static function getSwaggerToken() {
     $swagger = $this->db->where('id', 1)->get('fc_token')->row();
+    log_message('DEBUG', $swagger);
     if($swagger == null) {
         $this->setSwaggerToken();
         $nswagger = $this->db->where('id', 1)->get('fc_token')->row();

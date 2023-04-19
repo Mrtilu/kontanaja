@@ -274,6 +274,7 @@ class Callback extends CI_Controller {
 
     $response = json_decode(curl_exec($curl));
     // $dataJson = $response->data;
+    log_message('DEBUG', json_encode($response));
 
     $CI->db->truncate('fc_token');
     $fcToken = [
@@ -351,7 +352,7 @@ class Callback extends CI_Controller {
     if($swagger == null) {
         $CI->setSwaggerToken();
         $nswagger = $CI->db->where('id', 1)->get('fc_token')->row();
-        return $nswagger[0];
+        return $nswagger;
     } else {
         $date_now = date("Y-m-d H:i:s");
         $data_swagger = $CI->db->where('id', 1)->get('fc_token')->row();
@@ -362,10 +363,10 @@ class Callback extends CI_Controller {
             return $swagger_updated;
         }
         $swagger_old = $CI->db->where('id', 1)->get('fc_token')->row();
-        return $swagger_old[0];
+        return $swagger_old;
     }
     $swagger = $CI->db->where('id', 1)->get('fc_token')->row();
-    return $swagger[0];
+    return $swagger;
   }
 
 }

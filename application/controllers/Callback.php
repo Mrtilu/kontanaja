@@ -245,10 +245,7 @@ class Callback extends CI_Controller {
       CURLOPT_FOLLOWLOCATION => true,
       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
       CURLOPT_CUSTOMREQUEST => 'POST',
-      CURLOPT_POSTFIELDS =>'{
-        "email" : "'.$mt_user.'",
-        "password" : "'.$mt_key.'"
-    }',
+      CURLOPT_POSTFIELDS =>array('email' => $mt_user,'password' => $mt_key),
       CURLOPT_HTTPHEADER => array(
         'Content-Type: application/x-www-form-urlencoded'
       ),
@@ -275,22 +272,6 @@ class Callback extends CI_Controller {
     $mt_user = USERNAME_FOREXCHANGER;
     $mt_key = PASSWORD_FOREXCHANGER;
 
-    // $http = new Client([
-    //     'base_uri' => URL_FOREXCHANGER,
-    //     'headers'  => [
-    //         'Content-Type' => 'application/x-www-form-urlencoded',
-    //     ]
-    // ]);
-
-    // $data = [ 'form_params' => [
-    //         'username' => $mt_user,
-    //         'password' => $mt_key
-    //     ]
-    // ];
-    // $respons = $http->post('/api/login', $data);
-    // $token = json_decode($respons->getBody(), true);
-
-    // $access_token = $token['token'];
     log_message('error', "updateSwagger");
     $curl = curl_init();
 
@@ -303,10 +284,7 @@ class Callback extends CI_Controller {
       CURLOPT_FOLLOWLOCATION => true,
       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
       CURLOPT_CUSTOMREQUEST => 'POST',
-      CURLOPT_POSTFIELDS =>'{
-        "email" : "'.$mt_user.'",
-        "password" : "'.$mt_key.'"
-    }',
+      CURLOPT_POSTFIELDS =>array('email' => $mt_user,'password' => $mt_key),
       CURLOPT_HTTPHEADER => array(
         'Content-Type: application/x-www-form-urlencoded'
       ),

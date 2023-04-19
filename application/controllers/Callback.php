@@ -274,7 +274,6 @@ class Callback extends CI_Controller {
 
     $response = json_decode(curl_exec($curl));
     $dataJson = $response->data;
-    log_message('error', json_encode($response));
 
     $CI->db->truncate('fc_token');
     $fcToken = [
@@ -309,6 +308,7 @@ class Callback extends CI_Controller {
     // $token = json_decode($respons->getBody(), true);
 
     // $access_token = $token['token'];
+    log_message('error', "updateSwagger");
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
@@ -331,10 +331,11 @@ class Callback extends CI_Controller {
 
     $response = json_decode(curl_exec($curl));
     $dataJson = $response->data;
+    log_message('error', json_encode($response));
 
     $fcToken = [
       'token_type' => "Bearer",
-      'access_token' => $response->token,
+      'access_token' => $dataJson->token,
       'created_at' => date("Y-m-d H:i:s"),
       'updated_at' => date("Y-m-d H:i:s"),
       'expired_date' => date('Y-m-d H:i:s', strtotime('+1 days'))

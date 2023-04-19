@@ -231,7 +231,7 @@ class Callback extends CI_Controller {
   }
 
   private static function setSwaggerToken() {
-
+    $CI = get_instance();
     $mt_user = USERNAME_FOREXCHANGER;
     $mt_key = PASSWORD_FOREXCHANGER;
 
@@ -275,7 +275,7 @@ class Callback extends CI_Controller {
     $response = json_decode(curl_exec($curl));
     $dataJson = $response->data;
 
-    $this->db->truncate('fc_token');
+    $CI->db->truncate('fc_token');
     $fcToken = [
       'token_type' => "Bearer",
       'access_token' => $dataJson->token,
@@ -283,12 +283,12 @@ class Callback extends CI_Controller {
       'updated_at' => date("Y-m-d H:i:s"),
       'expired_date' => date('Y-m-d H:i:s', strtotime('+1 days'))
     ];
-    $insert = $this->db->insert('fc_token', $fcToken);  
+    $insert = $CI->db->insert('fc_token', $fcToken);  
     return true;
   }
 
   private static function updateSwagger() {
-
+    $CI = get_instance();
     $mt_user = USERNAME_FOREXCHANGER;
     $mt_key = PASSWORD_FOREXCHANGER;
 
@@ -338,7 +338,7 @@ class Callback extends CI_Controller {
       'updated_at' => date("Y-m-d H:i:s"),
       'expired_date' => date('Y-m-d H:i:s', strtotime('+1 days'))
     ];
-    $update = $this->db->where('id', 1)->update('fc_token', $fcToken);
+    $update = $CI->db->where('id', 1)->update('fc_token', $fcToken);
     $NewDate=Date('d:m:Y', strtotime('+1 days'));
     return true;
   }

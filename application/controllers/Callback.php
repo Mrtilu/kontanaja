@@ -344,12 +344,13 @@ class Callback extends CI_Controller {
   }
 
   private static function getSwaggerToken() {
+    $CI = get_instance();
     log_message('DEBUG', "getSwaggerToken");
-    $swagger = $this->db->where('id', 1)->get('fc_token')->row();
+    $swagger = $CI->db->where('id', 1)->get('fc_token')->row();
     log_message('DEBUG', $swagger);
     if($swagger == null) {
         $this->setSwaggerToken();
-        $nswagger = $this->db->where('id', 1)->get('fc_token')->row();
+        $nswagger = $CI->db->where('id', 1)->get('fc_token')->row();
         return $nswagger[0];
     } else {
         $date_now = date("Y-m-d H:i:s");
@@ -357,13 +358,13 @@ class Callback extends CI_Controller {
 
         if($date_now > $data_swagger->expired_date) {
             $this->updateSwagger();
-            $swagger_updated = $this->db->where('id', 1)->get('fc_token')->row();
+            $swagger_updated = $CI->db->where('id', 1)->get('fc_token')->row();
             return $swagger_updated;
         }
-        $swagger_old = $this->db->where('id', 1)->get('fc_token')->row();
+        $swagger_old = $CI->db->where('id', 1)->get('fc_token')->row();
         return $swagger_old[0];
     }
-    $swagger = $this->db->where('id', 1)->get('fc_token')->row();
+    $swagger = $CI->db->where('id', 1)->get('fc_token')->row();
     return $swagger[0];
   }
 

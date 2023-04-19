@@ -246,9 +246,6 @@ class Callback extends CI_Controller {
       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
       CURLOPT_CUSTOMREQUEST => 'POST',
       CURLOPT_POSTFIELDS =>array('email' => $mt_user,'password' => $mt_key),
-      CURLOPT_HTTPHEADER => array(
-        'Content-Type: application/x-www-form-urlencoded'
-      ),
     ));
 
     $response = json_decode(curl_exec($curl));
@@ -285,9 +282,6 @@ class Callback extends CI_Controller {
       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
       CURLOPT_CUSTOMREQUEST => 'POST',
       CURLOPT_POSTFIELDS =>array('email' => $mt_user,'password' => $mt_key),
-      CURLOPT_HTTPHEADER => array(
-        'Content-Type: application/x-www-form-urlencoded'
-      ),
     ));
 
     $response = json_decode(curl_exec($curl));

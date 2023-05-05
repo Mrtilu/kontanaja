@@ -112,7 +112,7 @@ class Callback extends CI_Controller {
 
               //process forexchanger
               $prosessFC =  $this->processForechanger($merchantRef, $data->status);
-
+              log_message('error', json_encode($prosessFC));
             }
           } elseif ($data->status== 'EXPIRED') {
             $inputData['StatusOrder'] = 2;
@@ -122,6 +122,7 @@ class Callback extends CI_Controller {
             if ($dataPro->ProductApi == 99) { //FC
               //process forexchange
               $prosessFC =  $this->processForechanger($merchantRef, $data->status);
+              log_message('error', json_encode($prosessFC));
             } 
 
           } elseif ($data->status == 'FAILED') {
@@ -132,6 +133,7 @@ class Callback extends CI_Controller {
             if ($dataPro->ProductApi == 99) { //FC
               //process forexchange
               $prosessFC =  $this->processForechanger($merchantRef, $data->status);
+              log_message('error', json_encode($prosessFC));
             }
           }
           echo json_encode(['success' => true]);
@@ -249,7 +251,6 @@ class Callback extends CI_Controller {
     ));
 
     $response = json_decode(curl_exec($curl));
-    log_message('error', json_encode($response));
     $dataJson = $response->data;
 
     $CI->db->truncate('fc_token');
@@ -269,7 +270,6 @@ class Callback extends CI_Controller {
     $mt_user = USERNAME_FOREXCHANGER;
     $mt_key = PASSWORD_FOREXCHANGER;
 
-    log_message('error', "updateSwagger");
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
@@ -285,7 +285,6 @@ class Callback extends CI_Controller {
     ));
 
     $response = json_decode(curl_exec($curl));
-    log_message('error', json_encode($response));
     $dataJson = $response->data;
 
     $fcToken = [
@@ -302,9 +301,7 @@ class Callback extends CI_Controller {
 
   private static function getSwaggerToken() {
     $CI = get_instance();
-    log_message('error', "getSwaggerToken");
     $swagger = $CI->db->where('id', 1)->get('fc_token')->row();
-    log_message('error', json_encode($swagger));
     if($swagger == null) {
         $CI->setSwaggerToken();
         $nswagger = $CI->db->where('id', 1)->get('fc_token')->row();

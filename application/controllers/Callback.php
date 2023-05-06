@@ -110,8 +110,12 @@ class Callback extends CI_Controller {
               //process forexchanger
               $prosessFC =  $this->processForechanger($merchantRef, $data->status);
 
-              $inputData['StatusOrder'] = 1;
-              $inputData['Ket'] = $prosessFC;
+              if($statusCode == 200){
+                $inputData['StatusOrder'] = 5;
+              }else{
+                $inputData['StatusOrder'] = 1;
+                $inputData['Ket'] = $prosessFC;
+              }
               $update = $this->db->where('InvoiceId', $merchantRef)->update('data_order', $inputData);
 
               log_message('error', json_encode($prosessFC));
@@ -335,28 +339,43 @@ class Callback extends CI_Controller {
   public function reprocessFc(){
     $Id = $this->input->post('Id');
     $dataDb = $this->db->where('Id',$Id)->get('data_order')->row();
+
+    $inputData['Ket'] = null;
     if($dataDb->StatusOrder == 0){ 
       //belum dibayar
     }
     if($dataDb->StatusOrder == 1){ 
-      //success
+      //sudah dibayar
+      $prosessFC =  $this->processForechanger($merchantRef, "PAID");
+      $inputData['Ket'] = $prosessFC;
     }
     if($dataDb->StatusOrder == 2){ 
       //expired
+      $prosessFC =  $this->processForechanger($merchantRef, "EXPIRED");
+      $inputData['Ket'] = $prosessFC;
     }
     if($dataDb->StatusOrder == 3){ 
       //gagal
+      $prosessFC =  $this->processForechanger($merchantRef, "FAILED");
+      $inputData['Ket'] = $prosessFC;
     }
     if($dataDb->StatusOrder == 4){ 
       //gagal by server
+      $prosessFC =  $this->processForechanger($merchantRef, "FAILED");
+      $inputData['Ket'] = $prosessFC;
     }
     if($dataDb->StatusOrder == 5){ 
       //sukses
     }
     if($dataDb->StatusOrder == 6){ 
       //pending
+      
     }
-
+    if($statusCode == 200){
+      $inputData['StatusOrder'] = 5;
+      $inputData['Ket'] = null;
+      $update = $this->db->where('InvoiceId', $merchantRef)->update('data_order', $inputData);
+    }
   }
 
 }

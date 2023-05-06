@@ -6,7 +6,7 @@ $this->load->view('_layout/HeaderNew'); ?>
 <div class="main-content">
   <section class="section">
     <div class="section-header">
-     <h1><?php echo $title; ?></h1>
+     <h1><?php echo $title; ?> | PRO</h1>
    </div>
    <div class="section-body">
     <?php

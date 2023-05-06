@@ -213,7 +213,7 @@ class Callback extends CI_Controller {
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
-      CURLOPT_URL => URL_FOREXCHANGER.'/api/v2/call_back_payment/errorin',
+      CURLOPT_URL => URL_FOREXCHANGER.'/api/v2/call_back_payment',
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_ENCODING => '',
       CURLOPT_MAXREDIRS => 10,
@@ -235,6 +235,9 @@ class Callback extends CI_Controller {
     $statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 
     curl_close($curl);
+    if($statusCode != 200){
+      log_message('error', json_encode($response));
+    }
     return $statusCode;
 
   }

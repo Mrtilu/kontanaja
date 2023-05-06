@@ -368,8 +368,12 @@ class Callback extends CI_Controller {
     }
     if($dataDb->StatusOrder == 4){ 
       //gagal by server
-      $prosessFC =  $this->processForechanger($merchantRef, "FAILED");
-      $inputData['Ket'] = $prosessFC;
+      $prosessFC =  $this->processForechanger($merchantRef, "PAID");
+      if($prosessFC == 200){
+        $inputData['StatusOrder'] = 5;
+        $inputData['Ket'] = null;
+        $update = $this->db->where('InvoiceId', $merchantRef)->update('data_order', $inputData);
+      }
     }
     if($dataDb->StatusOrder == 5){ 
       //sukses
@@ -378,11 +382,7 @@ class Callback extends CI_Controller {
       //pending
       
     }
-    if($statusCode == 200){
-      $inputData['StatusOrder'] = 5;
-      $inputData['Ket'] = null;
-      $update = $this->db->where('InvoiceId', $merchantRef)->update('data_order', $inputData);
-    }
+   
     $this->session->set_flashdata('message', 'Data berhasil diubah.');
     redirect('dashboard/transaksi');
   }

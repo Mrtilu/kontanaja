@@ -104,7 +104,7 @@ $this->load->view('_layout/HeaderNew'); ?>
                   </td>
                   <td>
                     <?php 
-                    if($d->Ket != "" && $d->Game == "FC"){
+                    if($d->Ket && $d->Game == "FC"){
                       echo '<a href="'.base_url('dashboard/transaksi/repeat/'.$d->Id.'').'" class="btn btn-info">Prosess Ulang, FC</a>';
                     }else{
                       if ($d->StatusOrder == 0) {

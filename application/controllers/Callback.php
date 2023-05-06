@@ -107,11 +107,13 @@ class Callback extends CI_Controller {
                 $this->db->where('InvoiceId', $merchantRef)->update('data_order', $inputData);
               }
             }elseif ($dataPro->ProductApi == 99) { //FC
-              $inputData['StatusOrder'] = 1;
-              $update = $this->db->where('InvoiceId', $merchantRef)->update('data_order', $inputData);
-
               //process forexchanger
               $prosessFC =  $this->processForechanger($merchantRef, $data->status);
+
+              $inputData['StatusOrder'] = 1;
+              $inputData['Ket'] = $prosessFC;
+              $update = $this->db->where('InvoiceId', $merchantRef)->update('data_order', $inputData);
+
               log_message('error', json_encode($prosessFC));
             }
           } elseif ($data->status== 'EXPIRED') {
@@ -122,6 +124,9 @@ class Callback extends CI_Controller {
             if ($dataPro->ProductApi == 99) { //FC
               //process forexchange
               $prosessFC =  $this->processForechanger($merchantRef, $data->status);
+
+              $inputData['Ket'] = $prosessFC;
+              $update = $this->db->where('InvoiceId', $merchantRef)->update('data_order', $inputData);
               log_message('error', json_encode($prosessFC));
             } 
 
@@ -133,6 +138,8 @@ class Callback extends CI_Controller {
             if ($dataPro->ProductApi == 99) { //FC
               //process forexchange
               $prosessFC =  $this->processForechanger($merchantRef, $data->status);
+              $inputData['Ket'] = $prosessFC;
+              $update = $this->db->where('InvoiceId', $merchantRef)->update('data_order', $inputData);
               log_message('error', json_encode($prosessFC));
             }
           }
@@ -174,7 +181,6 @@ class Callback extends CI_Controller {
   }
 
   private function processForechanger($merchantRef, $paymentStatus){
-    log_message('DEBUG', 'jalan processForechanger');
     $token = $this->getSwaggerToken();
     $valid_token = $token->token_type.' '.$token->access_token;
     // $valid_token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3RcL2V4Y2hhbmdlclwvcHVibGljXC9hcGlcL2xvZ2luIiwiaWF0IjoxNjgwODc4MjExLCJleHAiOjE2ODM0NzAyMTEsIm5iZiI6MTY4MDg3ODIxMSwianRpIjoiUE5YVmNCcmsweHBHNFFyZSIsInN1YiI6OSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.vg6QUbCDJEcZ8rrqHJ7sKtlGANwpMWOV17yMOm80Uas";
@@ -229,8 +235,6 @@ class Callback extends CI_Controller {
     $statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 
     curl_close($curl);
-    log_message('error', $response);
-    log_message('error', $statusCode);
     return $statusCode;
 
   }

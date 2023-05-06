@@ -29,11 +29,20 @@ $this->load->view('_layout/HeaderNew'); ?>
     <div class="row">
       <div class="col-12">
         <div class="card">
+          <?php
+             if ($page == 'edit') { 
+              if($data->Game == "FC"){
+                $url = base_url('callback/reprocessFc');
+              }else{
+                $url = base_url('dashboard/transaksi/repeatsubmit');
+              }
+            } else {
+              $url = base_url('dashboard/item/submit');
+            }
+          ?>
 
           <div class="card-body">
-            <form <?php if ($page == 'edit') { ?>
-             action="<?php echo base_url('dashboard/transaksi/repeatsubmit') ?>"
-             <?php } else { ?> action="<?php echo base_url('dashboard/item/submit') ?>" <?php } ?> method="post" enctype="multipart/form-data">
+            <form action="<?php echo $url ?>" method="post" enctype="multipart/form-data">
              <div class="form-group row mb-4">
               <input type="hidden" name="Id" value="<?php if ($page == 'edit'): echo $data->Id; ?>
 

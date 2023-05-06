@@ -6,7 +6,7 @@ $this->load->view('_layout/HeaderNew'); ?>
 <div class="main-content">
   <section class="section">
     <div class="section-header">
-     <h1><?php echo $title; ?> | VI</h1>
+     <h1><?php echo $title; ?></h1>
    </div>
 
    <div class="section-body">
@@ -103,29 +103,35 @@ $this->load->view('_layout/HeaderNew'); ?>
                     } ?>
                   </td>
                   <td>
-                    <?php if ($d->StatusOrder == 0) {
-                    } elseif ($d->StatusOrder == 1) {
-                      $dataProduct = $this->db->where('ProductCode',$d->Game)->get('data_product')->row();
-                      if ($dataProduct) {
-                        if ($dataProduct->ProductType == 0) {
-                          echo '<a href="'.base_url('dashboard/transaksi/pro/'.$d->Id.'').'" class="btn btn-info">Prosess</a>';
+                    <?php 
+                    if($d->Ket != 200 && $d->Game == "FC"){
+                      echo '<a href="'.base_url('dashboard/transaksi/repeat/'.$d->Id.'').'" class="btn btn-info">Prosess Ulang, FC</a>';
+                    }else{
+                      if ($d->StatusOrder == 0) {
+                      } elseif ($d->StatusOrder == 1) {
+                        $dataProduct = $this->db->where('ProductCode',$d->Game)->get('data_product')->row();
+                        if ($dataProduct) {
+                          if ($dataProduct->ProductType == 0) {
+                            echo '<a href="'.base_url('dashboard/transaksi/pro/'.$d->Id.'').'" class="btn btn-info">Prosess</a>';
+                          }
                         }
-                      }
-                    } elseif ($d->StatusOrder == 2) {
-                    } elseif ($d->StatusOrder == 3) {
-                    } elseif ($d->StatusOrder == 4) {
-                      echo '<a href="'.base_url('dashboard/transaksi/repeat/'.$d->Id.'').'" class="btn btn-info">Prosess Ulang</a>';
+                      } elseif ($d->StatusOrder == 2) {
+                      } elseif ($d->StatusOrder == 3) {
+                      } elseif ($d->StatusOrder == 4) {
+                        echo '<a href="'.base_url('dashboard/transaksi/repeat/'.$d->Id.'').'" class="btn btn-info">Prosess Ulang</a>';
 
 
-                    } elseif ($d->StatusOrder == 5) {
-                    } elseif ($d->StatusOrder == 6) {
-                      $dataProduct = $this->db->where('ProductCode',$d->Game)->get('data_product')->row();
-                      if ($dataProduct) {
-                        if ($dataProduct->ProductType == 0) {
-                          echo '<a href="'.base_url('dashboard/transaksi/pro/'.$d->Id.'').'" class="btn btn-success">Prosess Ulang</a>';
+                      } elseif ($d->StatusOrder == 5) {
+                      } elseif ($d->StatusOrder == 6) {
+                        $dataProduct = $this->db->where('ProductCode',$d->Game)->get('data_product')->row();
+                        if ($dataProduct) {
+                          if ($dataProduct->ProductType == 0) {
+                            echo '<a href="'.base_url('dashboard/transaksi/pro/'.$d->Id.'').'" class="btn btn-success">Prosess Ulang</a>';
+                          }
                         }
-                      }
-                    } ?>
+                      } 
+                    }
+                    ?>
                     
                   </td>
                 </tr>

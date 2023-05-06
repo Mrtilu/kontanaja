@@ -332,4 +332,31 @@ class Callback extends CI_Controller {
     return $swagger;
   }
 
+  public function reprocessFc(){
+    $Id = $this->input->post('Id');
+    $dataDb = $this->db->where('Id',$Id)->get('data_order')->row();
+    if($dataDb->StatusOrder == 0){ 
+      //belum dibayar
+    }
+    if($dataDb->StatusOrder == 1){ 
+      //success
+    }
+    if($dataDb->StatusOrder == 2){ 
+      //expired
+    }
+    if($dataDb->StatusOrder == 3){ 
+      //gagal
+    }
+    if($dataDb->StatusOrder == 4){ 
+      //gagal by server
+    }
+    if($dataDb->StatusOrder == 5){ 
+      //sukses
+    }
+    if($dataDb->StatusOrder == 6){ 
+      //pending
+    }
+
+  }
+
 }

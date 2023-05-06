@@ -174,9 +174,9 @@ class Callback extends CI_Controller {
   }
 
   private function processForechanger($merchantRef, $paymentStatus){
+    log_message('DEBUG', 'jalan processForechanger');
     $token = $this->getSwaggerToken();
     $valid_token = $token->token_type.' '.$token->access_token;
-    // log_message('DEBUG', 'jalan processForechanger');
     // $valid_token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3RcL2V4Y2hhbmdlclwvcHVibGljXC9hcGlcL2xvZ2luIiwiaWF0IjoxNjgwODc4MjExLCJleHAiOjE2ODM0NzAyMTEsIm5iZiI6MTY4MDg3ODIxMSwianRpIjoiUE5YVmNCcmsweHBHNFFyZSIsInN1YiI6OSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.vg6QUbCDJEcZ8rrqHJ7sKtlGANwpMWOV17yMOm80Uas";
 
     // $curl = curl_init();

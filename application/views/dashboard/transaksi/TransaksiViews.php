@@ -104,12 +104,9 @@ $this->load->view('_layout/HeaderNew'); ?>
                   </td>
                   <td>
                     <?php 
-                    echo $d->Ket." -"; 
-                    echo gettype($d->Ket);
-                    echo print_r(empty($d->Ket));
-                    if(!empty($d->Ket) && $d->Game === "FC"){
-                      echo '<a href="'.base_url('dashboard/transaksi/repeat/'.$d->Id.'').'" class="btn btn-info">Prosess Ulang, FC</a>';
-                    }else{
+                    // if(!empty($d->Ket) && $d->Game === "FC"){
+                    //   echo '<a href="'.base_url('dashboard/transaksi/repeat/'.$d->Id.'').'" class="btn btn-info">Prosess Ulang, FC</a>';
+                    // }else{
                       if ($d->StatusOrder == 0) {
                       } elseif ($d->StatusOrder == 1) {
                         $dataProduct = $this->db->where('ProductCode',$d->Game)->get('data_product')->row();
@@ -133,7 +130,7 @@ $this->load->view('_layout/HeaderNew'); ?>
                           }
                         }
                       } 
-                    }
+                    // }
                     ?>
                     
                   </td>

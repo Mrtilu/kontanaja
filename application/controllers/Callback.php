@@ -113,7 +113,7 @@ class Callback extends CI_Controller {
               if($statusCode == 200){
                 $inputData['StatusOrder'] = 5;
               }else{
-                $inputData['StatusOrder'] = 1;
+                $inputData['StatusOrder'] = 4;
                 $inputData['Ket'] = $prosessFC;
               }
               $update = $this->db->where('InvoiceId', $merchantRef)->update('data_order', $inputData);
@@ -129,7 +129,10 @@ class Callback extends CI_Controller {
               //process forexchange
               $prosessFC =  $this->processForechanger($merchantRef, $data->status);
 
-              $inputData['Ket'] = $prosessFC;
+              if($statusCode == 200){
+              }else{
+                $inputData['Ket'] = $prosessFC;
+              }
               $update = $this->db->where('InvoiceId', $merchantRef)->update('data_order', $inputData);
               log_message('error', json_encode($prosessFC));
             } 
@@ -142,7 +145,10 @@ class Callback extends CI_Controller {
             if ($dataPro->ProductApi == 99) { //FC
               //process forexchange
               $prosessFC =  $this->processForechanger($merchantRef, $data->status);
-              $inputData['Ket'] = $prosessFC;
+              if($statusCode == 200){
+              }else{
+                $inputData['Ket'] = $prosessFC;
+              }
               $update = $this->db->where('InvoiceId', $merchantRef)->update('data_order', $inputData);
               log_message('error', json_encode($prosessFC));
             }

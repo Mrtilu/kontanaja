@@ -369,7 +369,9 @@ class Callback extends CI_Controller {
     if($dataDb->StatusOrder == 4){ 
       //gagal by server
       $prosessFC =  $this->processForechanger($merchantRef, "PAID");
+      log_message('error', json_encode($prosessFC));
       if($prosessFC == 200){
+        log_message('error', "reprocessFc");
         $inputData['StatusOrder'] = 5;
         $inputData['Ket'] = null;
         $update = $this->db->where('InvoiceId', $merchantRef)->update('data_order', $inputData);

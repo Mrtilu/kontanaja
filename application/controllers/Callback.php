@@ -345,6 +345,7 @@ class Callback extends CI_Controller {
   public function reprocessFc(){
     $Id = $this->input->post('Id');
     $dataDb = $this->db->where('Id',$Id)->get('data_order')->row();
+    $merchantRef = $dataDb->InvoiceId;
 
     $inputData['Ket'] = null;
     if($dataDb->StatusOrder == 0){ 
@@ -382,6 +383,8 @@ class Callback extends CI_Controller {
       $inputData['Ket'] = null;
       $update = $this->db->where('InvoiceId', $merchantRef)->update('data_order', $inputData);
     }
+    $this->session->set_flashdata('message', 'Data berhasil diubah.');
+    redirect('dashboard/transaksi');
   }
 
 }

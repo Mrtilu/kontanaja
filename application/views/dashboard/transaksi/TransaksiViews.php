@@ -106,6 +106,7 @@ $this->load->view('_layout/HeaderNew'); ?>
                     <?php 
                     echo $d->Ket." -"; 
                     echo gettype($d->Ket);
+                    echo print_r(empty($d->Ket));
                     if(!empty($d->Ket) && $d->Game === "FC"){
                       echo '<a href="'.base_url('dashboard/transaksi/repeat/'.$d->Id.'').'" class="btn btn-info">Prosess Ulang, FC</a>';
                     }else{

@@ -226,10 +226,11 @@ class Callback extends CI_Controller {
     ));
 
     $response = curl_exec($curl);
+    $statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 
     curl_close($curl);
-    return json_decode($response->getBody());
-    // return $response;
+    // return json_decode($response->getBody());
+    return $statusCode;
 
   }
 

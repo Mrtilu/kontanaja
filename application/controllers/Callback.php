@@ -43,6 +43,7 @@ class Callback extends CI_Controller {
         if ($cek->StatusOrder == 1 || $cek->StatusOrder == 5) {
           echo json_encode(['success' => true]);
         }else {
+          $dataPro = $this->db->where('ProductCode',$cek->Game)->get('data_product')->row();
           if ($data->status == 'PAID') {
             $dataPro = $this->db->where('ProductCode',$cek->Game)->get('data_product')->row();
             $dataInputUntung = [
